@@ -1,2 +1,12 @@
+#ide
 .idea
-hotel.iml
+*.iml
+
+#out
+target
+
+#svn
+.git
+
+#OS X
+.DS_Store
