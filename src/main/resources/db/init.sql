@@ -1,0 +1,9 @@
+DROP DATABASE hotel;
+
+CREATE USER hotel_adm WITH PASSWORD 'Zz20164209';
+CREATE DATABASE hotel;
+\connect hotel
+GRANT ALL PRIVILEGES ON DATABASE hotel TO hotel_adm;
+
+
+
