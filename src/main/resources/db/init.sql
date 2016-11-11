@@ -5,10 +5,15 @@ CREATE DATABASE hotel;
 \connect hotel
 GRANT ALL PRIVILEGES ON DATABASE hotel TO hotel_adm;
 
+CREATE TABLE EKeys (
+  id SERIAL PRIMARY KEY
+);
+
 CREATE TABLE Employees (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  surename VARCHAR NOT NULL
+  surename VARCHAR NOT NULL,
+  key_id INTEGER REFERENCES EKeys
 );
 
 CREATE TABLE Hotels (
@@ -38,6 +43,7 @@ CREATE TABLE Reservations (
   hotel_id INTEGER ,
   st_date TIMESTAMP ,
   end_date TIMESTAMP ,
+  key_id INTEGER REFERENCES EKeys,
   FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE
 );
 
@@ -59,17 +65,6 @@ CREATE TABLE Owners (
 CREATE TABLE Staff (
   emp_id INTEGER PRIMARY KEY REFERENCES Employees ON DELETE CASCADE ,
   hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE
-);
-
-CREATE TABLE EKeys (
-  id SERIAL PRIMARY KEY ,
-  reservation_id INTEGER REFERENCES Reservations
-);
-
-CREATE TABLE EmployeesKeys (
-  emp_id INTEGER REFERENCES Employees ON DELETE CASCADE ,
-  key_id INTEGER REFERENCES EKeys ON DELETE CASCADE ,
-  PRIMARY KEY (emp_id, key_id)
 );
 
 CREATE TABLE HotelsOwners (
