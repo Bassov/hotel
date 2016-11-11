@@ -1,4 +1,4 @@
-DROP DATABASE hotel;
+DROP DATABASE IF EXISTS hotel;
 
 CREATE USER hotel_adm WITH PASSWORD 'Zz20164209';
 CREATE DATABASE hotel;
@@ -17,37 +17,6 @@ CREATE TABLE Hotels (
   address VARCHAR NOT NULL
 );
 
-CREATE TABLE Users (
-  id INTEGER REFERENCES Employees ON DELETE CASCADE,
-  login VARCHAR PRIMARY KEY,
-  password VARCHAR
-);
-
-CREATE TABLE Administrators (
-  login VARCHAR PRIMARY KEY REFERENCES Users ON DELETE CASCADE ,
-  hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE
-);
-
-CREATE TABLE Owners (
-  login VARCHAR PRIMARY KEY REFERENCES Users ON DELETE CASCADE
-);
-
-CREATE TABLE Staff (
-  id INTEGER PRIMARY KEY REFERENCES Employees ON DELETE CASCADE ,
-  hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE
-);
-
-CREATE TABLE Rooms (
-  id INTEGER REFERENCES Hotels ON DELETE CASCADE ,
-  number INTEGER NOT NULL CHECK (number > 0) ,
-  capacity INTEGER NOT NULL ,
-  PRIMARY KEY (id, number)
-);
-
-CREATE TABLE EKeys (
-  id SERIAL PRIMARY KEY
-);
-
 CREATE TABLE Guest (
   id SERIAL PRIMARY KEY ,
   name VARCHAR NOT NULL ,
@@ -55,22 +24,64 @@ CREATE TABLE Guest (
   doc VARCHAR NOT NULL
 );
 
+CREATE TABLE Rooms (
+  hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE ,
+  number INTEGER NOT NULL CHECK (number > 0) ,
+  capacity INTEGER NOT NULL ,
+  PRIMARY KEY (hotel_id, number)
+);
+
+CREATE TABLE Reservations (
+  id SERIAL PRIMARY KEY ,
+  guest_id INTEGER REFERENCES Guest ON DELETE CASCADE ,
+  room_number INTEGER ,
+  hotel_id INTEGER ,
+  st_date TIMESTAMP ,
+  end_date TIMESTAMP ,
+  FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE
+);
+
+CREATE TABLE Users (
+  emp_id INTEGER REFERENCES Employees ON DELETE CASCADE,
+  login VARCHAR PRIMARY KEY,
+  password VARCHAR
+);
+
+CREATE TABLE Administrators (
+  user_login VARCHAR PRIMARY KEY REFERENCES Users ON DELETE CASCADE ,
+  hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE
+);
+
+CREATE TABLE Owners (
+  user_login VARCHAR PRIMARY KEY REFERENCES Users ON DELETE CASCADE
+);
+
+CREATE TABLE Staff (
+  emp_id INTEGER PRIMARY KEY REFERENCES Employees ON DELETE CASCADE ,
+  hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE
+);
+
+CREATE TABLE EKeys (
+  id SERIAL PRIMARY KEY ,
+  reservation_id INTEGER REFERENCES Reservations
+);
+
 CREATE TABLE EmployeesKeys (
-  id INTEGER REFERENCES Employees ON DELETE CASCADE ,
+  emp_id INTEGER REFERENCES Employees ON DELETE CASCADE ,
   key_id INTEGER REFERENCES EKeys ON DELETE CASCADE ,
-  PRIMARY KEY (id, key_id)
+  PRIMARY KEY (emp_id, key_id)
 );
 
 CREATE TABLE HotelsOwners (
-  login VARCHAR REFERENCES Owners ON DELETE CASCADE ,
+  owner_login VARCHAR REFERENCES Owners ON DELETE CASCADE ,
   hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE ,
-  PRIMARY KEY (login, hotel_id)
+  PRIMARY KEY (owner_login, hotel_id)
 );
 
 CREATE TABLE RoomsKeys (
   hotel_id INTEGER ,
-  number INTEGER ,
+  room_number INTEGER ,
   key_id INTEGER REFERENCES EKeys ON DELETE CASCADE ,
-  FOREIGN KEY (hotel_id, number) REFERENCES Rooms ON DELETE CASCADE ,
-  PRIMARY KEY (hotel_id, number, key_id)
+  FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE ,
+  PRIMARY KEY (hotel_id, room_number, key_id)
 );
