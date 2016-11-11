@@ -1,4 +1,4 @@
-package hotel;
+package app;
 
 import spark.route.RouteOverview;
 
