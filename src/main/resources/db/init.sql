@@ -44,10 +44,10 @@ CREATE TABLE Staff (
 );
 
 CREATE TABLE Guest (
-  id SERIAL PRIMARY KEY ,
+  mail VARCHAR PRIMARY KEY ,
   name VARCHAR NOT NULL ,
   surename VARCHAR NOT NULL ,
-  doc VARCHAR NOT NULL
+  phone INTEGER NOT NULL
 );
 
 CREATE TABLE Rooms (
@@ -59,7 +59,7 @@ CREATE TABLE Rooms (
 
 CREATE TABLE Reservations (
   id SERIAL PRIMARY KEY ,
-  guest_id INTEGER REFERENCES Guest ON DELETE CASCADE ,
+  guest_mail VARCHAR REFERENCES Guest ON DELETE CASCADE ,
   room_number INTEGER ,
   hotel_id INTEGER ,
   st_date TIMESTAMP ,
