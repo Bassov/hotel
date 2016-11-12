@@ -1,9 +1,11 @@
 DROP DATABASE IF EXISTS hotel;
 
 CREATE USER hotel_adm WITH PASSWORD 'Zz20164209';
+CREATE ROLE hotel_adm_role nologin;
 CREATE DATABASE hotel;
 \connect hotel
 ALTER DATABASE hotel OWNER TO hotel_adm;
+GRANT hotel_adm_role TO hotel_adm;
 
 GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA public
