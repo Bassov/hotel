@@ -15,6 +15,13 @@
             <version>2.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- for server logs -->
         <dependency>
             <groupId>org.slf4j</groupId>
