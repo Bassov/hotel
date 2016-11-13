@@ -1,0 +1,7 @@
+<form method="post">
+    City:<br>
+    <input type="text" name="city"><br>
+    Address:<br>
+    <input type="text" name="address"><br>
+    <input type="submit" value="Submit">
+</form>
