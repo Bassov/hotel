@@ -19,7 +19,9 @@ public class HotelController {
     };
 
     public static Route createHotel = (Request request, Response response) -> {
-        System.out.println(request.queryMap().get("city").value());
+        String city = request.queryMap("city").value();
+        String address = request.queryMap("address").value();
+        HotelsDao.insert(city, address);
         return ViewUtil.render(request, new HashMap<>(), Path.Template.HOTEL_NEW);
     };
 

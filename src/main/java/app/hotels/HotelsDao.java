@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class HotelsDao {
 
-    public void insert(String city, String address) throws SQLException {
+    public static void insert(String city, String address) throws SQLException {
         String stm = "INSERT INTO Hotels(city, address) VALUES(?, ?)";
         DBParams params = new DBParams(city, address);
         DBConnection.execute(stm, params);
