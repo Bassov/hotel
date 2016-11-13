@@ -20,21 +20,15 @@ public class DBConnection {
     public static void execute(String statement, DBParams params) {
         DBConnection db = new DBConnection("jdbc:postgresql://localhost/hotel",
                 "hotel_adm", "Zz20164209");
+
         try (PreparedStatement pst = db.con.prepareStatement(statement)) {
             for (int i = 1; i <= params.size(); i++) {
                 pst.setString(i, params.get(i - 1));
             }
+            pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void insertHotel(String city, String address) throws SQLException {
-        String stm = "INSERT INTO Hotels(city, address) VALUES(?, ?)";
-        pst = con.prepareStatement(stm);
-        pst.setString(1, city);
-        pst.setString(2, address);
-        pst.executeUpdate();
     }
 
     public void insertEKey() throws SQLException {
