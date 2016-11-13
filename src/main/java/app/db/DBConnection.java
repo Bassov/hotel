@@ -17,11 +17,9 @@ public class DBConnection {
         }
     }
 
-    public static void execute(String statement, DBParams params) {
-        DBConnection db = new DBConnection("jdbc:postgresql://localhost/hotel",
-                "hotel_adm", "Zz20164209");
-
-        try (PreparedStatement pst = db.con.prepareStatement(statement)) {
+    public static void executeUpdate(String statement, DBParams params) {
+        Connection con = createConnection();
+        try (PreparedStatement pst = con.prepareStatement(statement)) {
             for (int i = 1; i <= params.size(); i++) {
                 pst.setString(i, params.get(i - 1));
             }
@@ -29,6 +27,33 @@ public class DBConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static ResultSet executeQuery(String statement, DBParams params) {
+        Connection con = createConnection();
+        ResultSet result = null;
+
+        try (PreparedStatement pst = con.prepareStatement(statement)) {
+            for (int i = 1; i <= params.size(); i++) {
+                pst.setString(i, params.get(i - 1));
+            }
+            result = pst.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    private static Connection createConnection() {
+        Connection con = null;
+        try {
+             con = DriverManager.getConnection("jdbc:postgresql://localhost/hotel",
+                    "hotel_adm", "Zz20164209");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return con;
     }
 
     public void insertEKey() throws SQLException {
