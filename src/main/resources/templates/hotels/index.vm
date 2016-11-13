@@ -1,3 +1,5 @@
+#parse("/templates/layout.vm")
+#@mainLayout()
 <table>
     <tr>
         <th>Hotel ID</th>
@@ -17,3 +19,4 @@
 <p>
     <a href="$WebPath.getHOTELS_NEW()">Create new Hotel</a>
 </p>
+#end

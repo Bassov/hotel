@@ -1,0 +1,27 @@
+#macro(mainLayout)
+<html>
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="icon" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <nav>
+        <ul id="menu">
+            <li><a href="$WebPath.getHOTELS_INDEX()">Hotels list</a></li>
+            <li><a href="$WebPath.getHOTELS_NEW()">Create new hotel</a> </li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div id="content">
+        $bodyContent
+    </div>
+</main>
+<footer>
+    <p>Made by Nikitos and Alexandr</p>
+</footer>
+</body>
+</html>
+#end

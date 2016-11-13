@@ -1,3 +1,5 @@
+#parse("/templates/layout.vm")
+#@mainLayout()
 <h1>Create New Hotel</h1>
 
 <form method="post">
@@ -7,3 +9,4 @@
     <input type="text" name="address"><br>
     <input type="submit" value="Submit">
 </form>
+#end
