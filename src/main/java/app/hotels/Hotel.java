@@ -9,4 +9,10 @@ public class Hotel {
     String city;
     String address;
 
+    public Hotel(int id, String city, String address) {
+        this.id = id;
+        this.city = city;
+        this.address = address;
+    }
+
 }

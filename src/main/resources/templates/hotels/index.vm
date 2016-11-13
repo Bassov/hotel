@@ -1,0 +1,19 @@
+<table>
+    <tr>
+        <th>Hotel ID</th>
+        <th>City</th>
+        <th>Address</th>
+    </tr>
+
+    #foreach($var in $hotels)
+        <tr>
+            <td>$var.getId()</td>
+            <td>$var.getCity()</td>
+            <td>$var.getAddress()</td>
+        </tr>
+    #end
+</table>
+
+<p>
+    <a href="$WebPath.getHOTELS_NEW()">Create new Hotel</a>
+</p>

@@ -29,23 +29,7 @@ public class DBConnection {
         }
     }
 
-    public static ResultSet executeQuery(String statement, DBParams params) {
-        Connection con = createConnection();
-        ResultSet result = null;
-
-        try (PreparedStatement pst = con.prepareStatement(statement)) {
-            for (int i = 1; i <= params.size(); i++) {
-                pst.setString(i, params.get(i - 1));
-            }
-            result = pst.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-
-    private static Connection createConnection() {
+    public static Connection createConnection() {
         Connection con = null;
         try {
              con = DriverManager.getConnection("jdbc:postgresql://localhost/hotel",

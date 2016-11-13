@@ -7,11 +7,15 @@ import spark.Response;
 import spark.Route;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class HotelController {
 
     public static Route indexHotels = (Request request, Response response) -> {
-        return null;
+        List<Hotel> hotels = HotelsDao.selectAll();
+        HashMap<String,Object> model = new HashMap<>();
+        model.put("hotels", hotels);
+        return ViewUtil.render(request, model, Path.Template.HOTEL_INDEX);
     };
 
     public static Route newHotel = (Request request, Response response) -> {
