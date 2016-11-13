@@ -42,11 +42,11 @@ CREATE TABLE Staff (
   hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE
 );
 
-CREATE TABLE Guest (
+CREATE TABLE Guests (
   mail VARCHAR PRIMARY KEY ,
   name VARCHAR NOT NULL ,
   surename VARCHAR NOT NULL ,
-  phone INTEGER NOT NULL
+  phone VARCHAR NOT NULL
 );
 
 CREATE TABLE Rooms (
@@ -58,7 +58,7 @@ CREATE TABLE Rooms (
 
 CREATE TABLE Reservations (
   id SERIAL PRIMARY KEY ,
-  guest_mail VARCHAR REFERENCES Guest ON DELETE CASCADE ,
+  guest_mail VARCHAR REFERENCES Guests ON DELETE CASCADE ,
   room_number INTEGER ,
   hotel_id INTEGER ,
   st_date TIMESTAMP ,

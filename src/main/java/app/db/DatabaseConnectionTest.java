@@ -40,6 +40,7 @@ public class DatabaseConnectionTest {
                 db.insertOwner("admin");
                 db.insertAdministrator("admin", 1);
                 db.insertStaff(1,1);
+                db.insertGuest("innopolis@mail.ru", "Alexandr", "Basov", "89132983322");
             } catch (SQLException ex) {
                 Logger lgr = Logger.getLogger(DatabaseConnectionTest.class.getName());
                 lgr.log(Level.SEVERE, ex.getMessage(), ex);
