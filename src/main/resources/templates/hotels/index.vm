@@ -1,5 +1,8 @@
 #parse("/templates/layout.vm")
 #@mainLayout()
+<h1>
+    List all Hotels
+</h1>
 <table>
     <tr>
         <th>Hotel ID</th>
@@ -7,11 +10,11 @@
         <th>Address</th>
     </tr>
 
-    #foreach($var in $hotels)
+    #foreach($hotel in $hotels)
         <tr>
-            <td>$var.getId()</td>
-            <td>$var.getCity()</td>
-            <td>$var.getAddress()</td>
+            <td>$hotel.getId()</td>
+            <td>$hotel.getCity()</td>
+            <td>$hotel.getAddress()</td>
         </tr>
     #end
 </table>

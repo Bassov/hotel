@@ -1,27 +1,40 @@
 #macro(mainLayout)
 <html>
-<head>
-    <link rel="stylesheet" href="/main.css">
-    <link rel="icon" href="/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<header>
-    <nav>
-        <ul id="menu">
-            <li><a href="$WebPath.getHOTELS_INDEX()">Hotels list</a></li>
-            <li><a href="$WebPath.getHOTELS_NEW()">Create new hotel</a> </li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <div id="content">
-        $bodyContent
-    </div>
-</main>
-<footer>
-    <p>Made by Nikitos and Alexandr</p>
-</footer>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="/main.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+            <a class="navbar-brand" href="#">2G1H</a>
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="$WebPath.getHOTELS_INDEX()">Hotels list
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="$WebPath.getHOTELS_NEW()">Create new hotel</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <main>
+                <div id="content">
+                    $bodyContent
+                </div>
+            </main>
+            <footer>
+                <p>Made by Nikitos and Alexandr</p>
+            </footer>
+        </div>
+    </body>
 </html>
 #end

@@ -8,7 +8,10 @@ import static spark.Spark.*;
 public class Application {
 
     public static void main(String[] args) {
-        get("/hello", (request, response) -> "Hello World");
+        // Configure Spark
+        port(4567);
+        staticFiles.location("/public");
+        staticFiles.expireTime(600L);
 
         // Hotels
         get(Path.Web.HOTELS_NEW, HotelController.newHotel);
