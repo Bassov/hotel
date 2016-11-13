@@ -121,4 +121,12 @@ public class DBConnection {
         pst.executeUpdate();
     }
 
+    public void insertRoomKey(int hotel_id, int room_number, int key_id) throws SQLException {
+        String stm = "INSERT INTO RoomsKeys(hotel_id, room_number, key_id) VALUES(?,?,?)";
+        pst = con.prepareStatement(stm);
+        pst.setInt(1, hotel_id);
+        pst.setInt(2, room_number);
+        pst.setInt(3, key_id);
+    }
+
 }
