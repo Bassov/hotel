@@ -1,20 +1,31 @@
 package app.db;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DBConnection {
-    public Connection con;
-    public PreparedStatement pst;
+    private Connection con;
+    private PreparedStatement pst;
 
-    public DBConnection(String url, String user, String password){
+    private DBConnection(String url, String user, String password){
         try {
             con = DriverManager.getConnection(url, user, password);
         } catch (SQLException ex) {
             Logger lgr = Logger.getLogger(DBConnection.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+    }
+
+    public static void execute(String statement, DBParams params) {
+        DBConnection db = new DBConnection("jdbc:postgresql://localhost/hotel",
+                "hotel_adm", "Zz20164209");
+        try (PreparedStatement pst = db.con.prepareStatement(statement)) {
+            for (int i = 1; i <= params.size(); i++) {
+                pst.setString(i, params.get(i - 1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -106,4 +117,5 @@ public class DBConnection {
         pst.setInt(6, key_id);
         pst.executeUpdate();
     }
+
 }
