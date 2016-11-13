@@ -1,9 +1,7 @@
 package app.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -91,6 +89,21 @@ public class DBConnection {
         pst.setInt(1, hotel_id);
         pst.setInt(2, number);
         pst.setInt(3, capacity);
+        pst.executeUpdate();
+    }
+
+    public void insertReservation(String guest_mail, int room_number, int hotel_id,
+                                  Timestamp st_date, Timestamp end_date, int key_id)
+                                    throws SQLException {
+        String stm = "INSERT INTO Reservations(guest_mail, room_number," +
+                     " hotel_id, st_date, end_date, key_id) VALUES(?, ?, ?, ?, ?,?)";
+        pst = con.prepareStatement(stm);
+        pst.setString(1, guest_mail);
+        pst.setInt(2, room_number);
+        pst.setInt(3, hotel_id);
+        pst.setTimestamp(4, st_date);
+        pst.setTimestamp(5, end_date);
+        pst.setInt(6, key_id);
         pst.executeUpdate();
     }
 }

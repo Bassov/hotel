@@ -1,8 +1,7 @@
 package app.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,6 +41,8 @@ public class DatabaseConnectionTest {
                 db.insertStaff(1,1);
                 db.insertGuest("innopolis@mail.ru", "Alexandr", "Basov", "89132983322");
                 db.insertRoom(1, 209, 5);
+                long millis = Date.valueOf(LocalDate.now()).getTime();
+                db.insertReservation("innopolis@mail.ru", 209, 1, new Timestamp(millis), new Timestamp(millis + 1), 1);
             } catch (SQLException ex) {
                 Logger lgr = Logger.getLogger(DatabaseConnectionTest.class.getName());
                 lgr.log(Level.SEVERE, ex.getMessage(), ex);
