@@ -84,4 +84,13 @@ public class DBConnection {
         pst.setString(4, phone);
         pst.executeUpdate();
     }
+
+    public void insertRoom(int hotel_id, int number, int capacity) throws SQLException {
+        String stm = "INSERT INTO Rooms(hotel_id, number, capacity) VALUES(?, ?, ?)";
+        pst = con.prepareStatement(stm);
+        pst.setInt(1, hotel_id);
+        pst.setInt(2, number);
+        pst.setInt(3, capacity);
+        pst.executeUpdate();
+    }
 }
