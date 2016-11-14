@@ -11,7 +11,7 @@ CREATE TABLE EKeys (
 CREATE TABLE Employees (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  surename VARCHAR NOT NULL,
+  surname VARCHAR NOT NULL,
   key_id INTEGER REFERENCES EKeys
 );
 
