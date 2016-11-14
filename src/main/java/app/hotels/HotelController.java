@@ -26,7 +26,9 @@ public class HotelController {
         String city = request.queryMap("city").value();
         String address = request.queryMap("address").value();
         HotelsDao.insert(city, address);
-        return ViewUtil.render(request, new HashMap<>(), Path.Template.HOTEL_NEW);
+
+        response.redirect(Path.Web.HOTELS_INDEX);
+        return null;
     };
 
 }
