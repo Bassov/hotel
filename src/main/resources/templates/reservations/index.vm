@@ -1,0 +1,39 @@
+#parse("/templates/layout.vm")
+#@mainLayout()
+<h1>List all Reservations</h1>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Guest_mail</th>
+        <th>Room_number</th>
+        <th>Hotel_ID</th>
+        <th>St_Date</th>
+        <th>End_Date</th>
+        <th>Key_ID</th>
+        <th>Approved</th>
+    </tr>
+    </thead>
+    <tbody>
+        #foreach($reservation in $reservations)
+        <tr>
+            <th scope="row">
+                <a href="/reservations/$reservation.getId()">$reservation.getId()</a>
+            </th>
+            <td>$reservation.getGuest_mail()</td>
+            <td>$reservation.getRoom_number()</td>
+            <td>$reservation.getHotel_id()</td>
+            <td>$reservation.getSt_date()</td>
+            <td>$reservation.getEnd_date()</td>
+            <td>$reservation.getKey_id()</td>
+            <td>$reservation.getApproved()</td>
+        </tr>
+        #end
+    </tbody>
+</table>
+
+<p>
+    <a href="$WebPath.getRESERVATIONS_NEW()">Create new Reservation</a>
+</p>
+#end
