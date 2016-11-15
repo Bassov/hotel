@@ -1,22 +1,24 @@
 #parse("/templates/layout.vm")
 #@mainLayout()
-<h1>
-    List all Hotels
-</h1>
-<table>
-    <tr>
-        <th>Hotel ID</th>
-        <th>City</th>
-        <th>Address</th>
-    </tr>
+<h1>List all Hotels</h1>
 
-    #foreach($hotel in $hotels)
+<table class="table table-bordered">
+    <thead>
         <tr>
-            <td>$hotel.getId()</td>
-            <td>$hotel.getCity()</td>
-            <td>$hotel.getAddress()</td>
+            <th>ID</th>
+            <th>City</th>
+            <th>Address</th>
         </tr>
-    #end
+    </thead>
+    <tbody>
+        #foreach($hotel in $hotels)
+            <tr>
+                <th scope="row">$hotel.getId()</th>
+                <td>$hotel.getCity()</td>
+                <td>$hotel.getAddress()</td>
+            </tr>
+        #end
+    </tbody>
 </table>
 
 <p>
