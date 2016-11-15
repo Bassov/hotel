@@ -1,13 +1,12 @@
 package app.employees.staff;
 
-import app.employees.Employee;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-public class StaffMember extends Employee {
+@Data @AllArgsConstructor
+public class StaffMember {
 
     int emp_id;
     int hotel_id;
 
-    public StaffMember(int id, String name, String surname) {
-        super(id, name, surname);
-    }
 }

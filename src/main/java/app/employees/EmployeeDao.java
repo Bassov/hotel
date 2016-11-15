@@ -2,6 +2,9 @@ package app.employees;
 
 import app.db.AbstractDao;
 import app.db.DBParams;
+import app.employees.staff.StaffMemberDao;
+import app.employees.users.adminstrators.AdministratorDao;
+import app.employees.users.owners.OwnerDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,21 +28,20 @@ public class EmployeeDao extends AbstractDao<Employee> {
     }
 
     public static Employee find(String id) {
-        String statement = "SELECT * FROM employees WHERE id = ?";
-        DBParams params = new DBParams(id);
-        return dao.findByKey(statement, params);
+        String statement = "SELECT * FROM employees WHERE id = " + id;
+        return dao.findByKey(statement, null);
     }
 
     public static boolean isStaff(String empId) {
-        String statement = "SELECT * FROM staff WHERE emp_id = ?";
-        DBParams params = new DBParams(empId);
-        return !dao.executeQuery(statement, params).isEmpty();
+        return StaffMemberDao.findByEmpId(empId) != null;
     }
 
     public static boolean isAdministrator(String empId) {
-        String statement = "SELECT * FROM users WHERE emp_id = ?";
-        DBParams params = new DBParams(empId);
-        return !dao.executeQuery(statement, params).isEmpty();
+        return AdministratorDao.findByEmpId(empId) != null;
+    }
+
+    public static boolean isOwner(String empId) {
+        return OwnerDao.findByEmpId(empId) != null;
     }
 
     @Override

@@ -1,13 +1,14 @@
 #parse("/templates/layout.vm")
 #@mainLayout()
-<h1>List all Hotels</h1>
+<h1>All Employees</h1>
 
 <table class="table table-bordered">
     <thead>
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Surename</th>
+        <th>Surname</th>
+        <th>Role</th>
     </tr>
     </thead>
     <tbody>
@@ -15,7 +16,8 @@
         <tr>
             <th scope="row">$emp.getId()</th>
             <td>$emp.getName()</td>
-            <td>$emp.getSurename()</td>
+            <td>$emp.getSurname()</td>
+            <td>$emp.getStatus()</td>
         </tr>
         #end
     </tbody>
