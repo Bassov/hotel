@@ -18,9 +18,9 @@ public class EmployeeDao extends AbstractDao<Employee> {
 
     private static final EmployeeDao dao = new EmployeeDao();
 
-    public static int insert(String name, String surname) {
-        String stm = "INSERT INTO employees(name, surname) VALUES(?, ?) RETURNING id";
-        DBParams params = new DBParams(name, surname);
+    public static int insert(String name, String lastName) {
+        String stm = "INSERT INTO employees(name, lastName) VALUES(?, ?) RETURNING id";
+        DBParams params = new DBParams(name, lastName);
         return dao.executeUpdate(stm, params);
     }
 

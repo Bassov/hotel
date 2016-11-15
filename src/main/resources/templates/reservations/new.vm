@@ -7,8 +7,8 @@
     <input type="text" name="mail"><br>
     Name:<br>
     <input type="text" name="name"><br>
-    Surename:<br>
-    <input type="text" name="surename"><br>
+    lastName:<br>
+    <input type="text" name="lastName"><br>
     Phone:<br>
     <input type="text" name="phone"><br>
     Hotel_id:<br>

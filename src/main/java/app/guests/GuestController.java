@@ -25,9 +25,9 @@
 //    public static Route createGuest = (Request request, Response response) -> {
 //        String mail = request.queryMap("mail").value();
 //        String name = request.queryMap("name").value();
-//        String surename = request.queryMap("surename").value();
+//        String lastName = request.queryMap("lastName").value();
 //        String phone = request.queryMap("phone").value();
-//        GuestsDao.insert(mail, name, surename, phone);
+//        GuestsDao.insert(mail, name, lastName, phone);
 //        return ViewUtil.render(request, new HashMap<>(), Path.Template.GUESTS_NEW);
 //    };
 //

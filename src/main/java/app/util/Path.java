@@ -18,7 +18,7 @@ public class Path {
         @Getter public static final String EMPLOYEES_CREATE = "/employees/new";
 
         @Getter public static final String RESERVATIONS_INDEX = "/reservations";
-        @Getter public static final String RESERVATIONS_NEW = "/reservations/new";
+        @Getter public static final String RESERVATIONS_NEW = "/";
         @Getter public static final String RESERVATIONS_CREATE = "/reservations/new";
         @Getter public static final String RESERVATIONS_SHOW = "/reservations/:id";
     }

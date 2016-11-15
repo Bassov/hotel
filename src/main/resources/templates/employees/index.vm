@@ -7,7 +7,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Surname</th>
+        <th>lastName</th>
         <th>Role</th>
     </tr>
     </thead>
@@ -16,7 +16,7 @@
         <tr>
             <th scope="row">$emp.getId()</th>
             <td>$emp.getName()</td>
-            <td>$emp.getSurname()</td>
+            <td>$emp.getlastName()</td>
             <td>$emp.getStatus()</td>
         </tr>
         #end

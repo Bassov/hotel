@@ -30,13 +30,13 @@ public class ReservationController {
     public static Route create = (Request request, Response response) -> {
         String mail = request.queryMap("mail").value();
         String name = request.queryMap("name").value();
-        String surename = request.queryMap("surename").value();
+        String lastName = request.queryMap("lastName").value();
         String phone = request.queryMap("phone").value();
 
         Guest guest = GuestsDao.find(mail);
 
         if (guest == null) {
-            GuestsDao.insert(mail, name, surename, phone);
+            GuestsDao.insert(mail, name, lastName, phone);
         }
 
         String hotel_id = request.queryMap("hotel_id").value();

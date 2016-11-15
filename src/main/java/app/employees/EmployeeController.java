@@ -32,7 +32,7 @@ public class EmployeeController {
 
     public static Route create = (Request request, Response response) -> {
         String name = queryValue(request, "name");
-        String surname = queryValue(request, "surname");
+        String lastName = queryValue(request, "lastName");
         String hotelId = queryValue(request, "hotelId");
         String role = queryValue(request, "role");
         String login = queryValue(request, "login");
@@ -45,7 +45,7 @@ public class EmployeeController {
             return ViewUtil.render(request, model, Path.Template.EMPLOYEES_NEW);
         }
 
-        String emp_id = String.valueOf(EmployeeDao.insert(name, surname));
+        String emp_id = String.valueOf(EmployeeDao.insert(name, lastName));
 
         switch (role) {
             case "staff":

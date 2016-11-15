@@ -2,6 +2,7 @@ package app;
 
 import app.employees.EmployeeController;
 import app.hotels.HotelController;
+import app.reservations.ReservationController;
 import app.util.Path;
 
 import static spark.Spark.*;
@@ -24,6 +25,9 @@ public class Application {
         get(Path.Web.EMPLOYEES_INDEX, EmployeeController.index);
         get(Path.Web.EMPLOYEES_NEW, EmployeeController.newEmployee);
         post(Path.Web.EMPLOYEES_CREATE, EmployeeController.create);
+
+        // Reservation
+        get(Path.Web.RESERVATIONS_NEW, ReservationController.newReservation);
     }
 
 }

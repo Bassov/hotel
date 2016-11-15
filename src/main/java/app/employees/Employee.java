@@ -8,7 +8,7 @@ public class Employee {
 
     int id;
     String name;
-    String surname;
+    String lastName;
 
     public String getStatus() {
         String id = String.valueOf(this.id);
@@ -28,7 +28,7 @@ public class Employee {
     }
 
     public String getFullName() {
-        return name + " " + surname;
+        return name + " " + lastName;
     }
 
 }

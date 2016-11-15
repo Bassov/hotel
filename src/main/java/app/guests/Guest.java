@@ -7,13 +7,13 @@ public class Guest {
 
     String mail;
     String name;
-    String surename;
+    String lastName;
     String phone;
 
-    public Guest(String mail, String name, String surename, String phone) {
+    public Guest(String mail, String name, String lastName, String phone) {
         this.mail = mail;
         this.name = name;
-        this.surename = surename;
+        this.lastName = lastName;
         this.phone = phone;
     }
 }

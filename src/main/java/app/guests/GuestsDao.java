@@ -14,9 +14,9 @@ public class GuestsDao extends AbstractDao<Guest>{
 
     private static final GuestsDao dao = new GuestsDao();
 
-    public static void insert(String mail, String name, String surename, String phone) {
-        String stm = "INSERT INTO Guests(mail, name, surename, phone) VALUES(?, ?, ?, ?)";
-        DBParams params = new DBParams(mail, name, surename, phone);
+    public static void insert(String mail, String name, String lastName, String phone) {
+        String stm = "INSERT INTO Guests(mail, name, lastName, phone) VALUES(?, ?, ?, ?)";
+        DBParams params = new DBParams(mail, name, lastName, phone);
         dao.executeUpdate(stm, params);
     }
 
