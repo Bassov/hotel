@@ -6,11 +6,13 @@
     Guest_mail:<br>
     <input type="text" name="mail"><br>
     Hotel_id:<br>
-    <input type="text" name="address"><br>
+    <input type="text" name="hotel_id"><br>
     St_date:<br>
     <input type="text" name="st_date"><br>
     End_date:<br>
     <input type="text" name="end_date"><br>
+    Number_of_people:<br>
+    <input type="text" name="number_of_people"><br>
     <input type="submit" value="Submit">
 </form>
 #end
