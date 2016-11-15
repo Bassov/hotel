@@ -26,8 +26,10 @@ public class Application {
         get(Path.Web.EMPLOYEES_NEW, EmployeeController.newEmployee);
         post(Path.Web.EMPLOYEES_CREATE, EmployeeController.create);
 
-        // Reservation
+        //Reservations
+        get(Path.Web.RESERVATIONS_INDEX, ReservationController.index);
         get(Path.Web.RESERVATIONS_NEW, ReservationController.newReservation);
+        post(Path.Web.RESERVATIONS_CREATE, ReservationController.create);
     }
 
 }

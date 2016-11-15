@@ -61,8 +61,8 @@ CREATE TABLE Reservations (
   guest_mail VARCHAR REFERENCES Guests ON DELETE CASCADE ,
   room_number INTEGER ,
   hotel_id INTEGER ,
-  st_date TIMESTAMP ,
-  end_date TIMESTAMP ,
+  st_date DATE ,
+  end_date DATE ,
   key_id INTEGER REFERENCES EKeys,
   approved BOOLEAN,
   FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE
