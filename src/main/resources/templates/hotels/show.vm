@@ -3,4 +3,5 @@
     <h1>Hotel #$hotel.getId()</h1>
     <p>City: $hotel.getCity()</p>
     <p>Address: $hotel.getAddress()</p>
+    <p>Owner: $hotel.getOwnerFullName()</p>
 #end

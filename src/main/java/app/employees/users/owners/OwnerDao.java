@@ -14,6 +14,11 @@ public class OwnerDao extends AbstractDao<Owner> {
 
     private static final OwnerDao dao = new OwnerDao();
 
+    public static void insert(String user_login) {
+        String statement = String.format("INSERT INTO owners (user_login) VALUES ('%s')", user_login);
+        dao.executeUpdate(statement, null);
+    }
+
     public static Owner findByLogin(String login) {
         String statement = "SELECT * FROM owners WHERE user_login = " + login;
         return dao.findByKey(statement, null);

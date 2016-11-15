@@ -3,6 +3,8 @@ package app.employees;
 import app.db.AbstractDao;
 import app.db.DBParams;
 import app.employees.staff.StaffMemberDao;
+import app.employees.users.User;
+import app.employees.users.UserDao;
 import app.employees.users.adminstrators.AdministratorDao;
 import app.employees.users.owners.OwnerDao;
 
@@ -16,10 +18,10 @@ public class EmployeeDao extends AbstractDao<Employee> {
 
     private static final EmployeeDao dao = new EmployeeDao();
 
-    public static void insert(String name, String surname) {
-        String stm = "INSERT INTO employees(name, surname) VALUES(?, ?)";
+    public static int insert(String name, String surname) {
+        String stm = "INSERT INTO employees(name, surname) VALUES(?, ?) RETURNING id";
         DBParams params = new DBParams(name, surname);
-        dao.executeUpdate(stm, params);
+        return dao.executeUpdate(stm, params);
     }
 
     public static List<Employee> selectAll() {
@@ -30,6 +32,11 @@ public class EmployeeDao extends AbstractDao<Employee> {
     public static Employee find(String id) {
         String statement = "SELECT * FROM employees WHERE id = " + id;
         return dao.findByKey(statement, null);
+    }
+
+    public static Employee findByLogin(String login) {
+        User u = UserDao.findByLogin(login);
+        return u == null ? null : find(u.getEmp_id() + "");
     }
 
     public static boolean isStaff(String empId) {

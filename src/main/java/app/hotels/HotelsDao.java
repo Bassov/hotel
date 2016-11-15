@@ -19,6 +19,12 @@ public class HotelsDao extends AbstractDao<Hotel> {
         dao.executeUpdate(stm, params);
     }
 
+    public static void setOwner(String hotelId, String login) {
+        String stm = String.format("UPDATE hotels SET owner_login = '%s' WHERE id = %s",
+                login, hotelId);
+        dao.executeUpdate(stm, null);
+    }
+
     public static List<Hotel> selectAll() {
         String statement = "SELECT * FROM hotels";
         return dao.executeQuery(statement, null);

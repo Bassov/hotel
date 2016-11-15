@@ -12,6 +12,12 @@ public class StaffMemberDao extends AbstractDao<StaffMember> {
 
     private static final StaffMemberDao dao = new StaffMemberDao();
 
+    public static void insert(String emp_id, String hotel_id) {
+        String statement = String.format("INSERT INTO staff (emp_id, hotel_id) VALUES ('%s', '%s')",
+                emp_id, hotel_id);
+        dao.executeUpdate(statement, null);
+    }
+
     public static StaffMember findByEmpId(String id) {
         String statement = "SELECT * FROM staff WHERE emp_id = " + id;
         return dao.findByKey(statement, null);

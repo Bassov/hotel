@@ -27,4 +27,8 @@ public class Employee {
         return "Hui kakoi-to";
     }
 
+    public String getFullName() {
+        return name + " " + surname;
+    }
+
 }

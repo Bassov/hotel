@@ -1,20 +1,25 @@
 #parse("/templates/layout.vm")
 #@mainLayout()
 <script src="/js/employees/new.js"></script>
-<form>
+#if ($alert)
+    <div class="alert alert-danger" role="alert">
+        <strong>Oh snap! </strong>$alert
+    </div>
+#end
+<form method="post">
     <div class="form-group">
         <label for="inputName">Name</label>
-        <input type="text" class="form-control" id="inputName" placeholder="Enter employees first name">
+        <input name="name" type="text" class="form-control" id="inputName" placeholder="Enter employees first name">
     </div>
     <div class="form-group">
         <label for="inputSurname">Surname</label>
-        <input type="text" class="form-control" id="inputSurname" placeholder="Enter employees second name">
+        <input name="surname" type="text" class="form-control" id="inputSurname" placeholder="Enter employees second name">
     </div>
     <div class="form-group">
         <label for="exampleSelect1">Select hotel</label>
-        <select class="form-control" id="exampleSelect1">
+        <select name="hotelId" class="form-control" id="exampleSelect1">
             #foreach($hotel in $hotels)
-                <option>$hotel.toString()</option>
+                <option value="$hotel.getId()">$hotel.toString()</option>
             #end
         </select>
     </div>
@@ -23,19 +28,19 @@
         <legend>Select role for new employee</legend>
         <div class="form-check">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optionsRadios" id="staffOption" value="staff" checked>
+                <input type="radio" class="form-check-input" name="role" id="staffOption" value="staff" checked>
                 To staff
             </label>
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optionsRadios" id="admOption" value="admin">
+                <input type="radio" class="form-check-input" name="role" id="admOption" value="admin">
                 To administrators
             </label>
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optionsRadios" id="ownerOption" value="owner">
+                <input type="radio" class="form-check-input" name="role" id="ownerOption" value="owner">
                 Owner of selected hotel
             </label>
         </div>
@@ -43,12 +48,12 @@
 
     <div id="usersForm" class="hidden">
         <div class="form-group">
-            <label for="exampleInputPassword1">Login</label>
-            <input type="text" class="form-control" id="inputLogin" placeholder="Login">
+            <label for="inputLogin">Login</label>
+            <input name="login" type="text" class="form-control" id="inputLogin" placeholder="Login">
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            <label for="inputPassword">Password</label>
+            <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

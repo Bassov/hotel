@@ -23,6 +23,7 @@ public class Application {
         // Employees
         get(Path.Web.EMPLOYEES_INDEX, EmployeeController.index);
         get(Path.Web.EMPLOYEES_NEW, EmployeeController.newEmployee);
+        post(Path.Web.EMPLOYEES_CREATE, EmployeeController.create);
     }
 
 }

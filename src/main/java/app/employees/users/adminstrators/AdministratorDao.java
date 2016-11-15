@@ -14,6 +14,12 @@ public class AdministratorDao extends AbstractDao<Administrator> {
 
     private static final AdministratorDao dao = new AdministratorDao();
 
+    public static void insert(String user_login, String hotel_id) {
+        String statement = String.format("INSERT INTO administrators (user_login, hotel_id) VALUES ('%s', '%s')",
+                user_login, hotel_id);
+        dao.executeUpdate(statement, null);
+    }
+
     public static Administrator findByLogin(String login) {
         String statement = "SELECT * FROM administrators WHERE user_login = " + login;
         return dao.findByKey(statement, null);

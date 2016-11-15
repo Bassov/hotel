@@ -15,14 +15,18 @@ public abstract class AbstractDao<T> {
                 Connection con = createConnection();
                 PreparedStatement pst = con.prepareStatement(statement);
         ) {
-            for (int i = 1; i <= params.size(); i++) {
-                pst.setString(i, params.get(i - 1));
+            if (params != null) {
+                for (int i = 1; i <= params.size(); i++) {
+                    pst.setString(i, params.get(i - 1));
+                }
             }
 
-            if (statement.toUpperCase().contains("returning")) {
+            if (statement.toUpperCase().contains("RETURNING")) {
                 ResultSet rst = pst.executeQuery();
+                rst.next();
                 return rst.getInt(1);
             }
+            System.out.println(statement);
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
