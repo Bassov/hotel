@@ -24,6 +24,24 @@ public class EmployeeDao extends AbstractDao<Employee> {
         return dao.executeQuery(statement, null);
     }
 
+    public static Employee find(String id) {
+        String statement = "SELECT * FROM employees WHERE id = ?";
+        DBParams params = new DBParams(id);
+        return dao.findByKey(statement, params);
+    }
+
+    public static boolean isStaff(String empId) {
+        String statement = "SELECT * FROM staff WHERE emp_id = ?";
+        DBParams params = new DBParams(empId);
+        return !dao.executeQuery(statement, params).isEmpty();
+    }
+
+    public static boolean isAdministrator(String empId) {
+        String statement = "SELECT * FROM users WHERE emp_id = ?";
+        DBParams params = new DBParams(empId);
+        return !dao.executeQuery(statement, params).isEmpty();
+    }
+
     @Override
     protected Function<ResultSet,List<Employee>> mapToObject() {
         return (rs) -> {
