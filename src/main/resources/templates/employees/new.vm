@@ -6,6 +6,7 @@
         <strong>Oh snap! </strong>$alert
     </div>
 #end
+<h1>Add new employee</h1>
 <form method="post">
     <div class="form-group">
         <label for="inputName">Name</label>

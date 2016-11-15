@@ -24,16 +24,20 @@
                 </li>
             </ul>
         </nav>
+        <div id = "wrap">
+            <div class="container col-md-3">
 
-        <div class="container">
-            <main>
-                <div id="content">
+            </div>
+            <div class="container col-md-4">
+                <main>
                     $bodyContent
-                </div>
-            </main>
-            <footer>
-                <p>Made by Nikitos and Alexandr</p>
-            </footer>
+                </main>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <p class="muted credit">Made by Nikitos and Alexandr</p>
+            </div>
         </div>
     </body>
 </html>
