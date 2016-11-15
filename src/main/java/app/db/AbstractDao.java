@@ -48,7 +48,11 @@ public abstract class AbstractDao<T> {
 
     public T findByKey(String statement, DBParams primaryKey) {
         List<T> entities = executeQuery(statement, primaryKey);
-        return entities.get(0);
+        if (entities.isEmpty()) {
+            return null;
+        } else {
+            return entities.get(0);
+        }
     }
 
     protected abstract Function<ResultSet, List<T>> mapToObject();
