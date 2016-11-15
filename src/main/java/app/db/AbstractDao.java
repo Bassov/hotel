@@ -10,18 +10,24 @@ public abstract class AbstractDao<T> {
     private static final String LOGIN = "hotel_adm";
     private static final String PASSWORD = "Zz20164209";
 
-    public void executeUpdate(String statement, DBParams params) {
+    public int executeUpdate(String statement, DBParams params) {
         try (
                 Connection con = createConnection();
-                PreparedStatement pst = con.prepareStatement(statement)
+                PreparedStatement pst = con.prepareStatement(statement);
         ) {
             for (int i = 1; i <= params.size(); i++) {
                 pst.setString(i, params.get(i - 1));
+            }
+
+            if (statement.toUpperCase().contains("returning")) {
+                ResultSet rst = pst.executeQuery();
+                return rst.getInt(1);
             }
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     public List<T> executeQuery(String statement, DBParams params) {

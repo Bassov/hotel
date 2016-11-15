@@ -35,7 +35,7 @@ public class HotelsDao extends AbstractDao<Hotel> {
             List<Hotel> result = new ArrayList<>();
             try {
                 while (rs.next()) {
-                    result.add(new Hotel(rs.getInt(1), rs.getString(2), rs.getString(3)));
+                    result.add(new Hotel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
