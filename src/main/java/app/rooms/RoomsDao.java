@@ -17,6 +17,15 @@ public class RoomsDao extends AbstractDao<Room>{
         dao.executeUpdate(stm, null);
     }
 
+    public static List<Room> selectByHotelAndDates(String hotel_id, String start, String end) {
+        String statement = "SELECT * FROM Rooms WHERE room_number NOT IN " +
+        "(SELECT room_number FROM Reservations WHERE Reservations.hotel_id = " + hotel_id +" and " +
+                "((Reservations.end_date > " + start + " and Reservations.end_date < " + end + ") or " +
+                "(Reservations.st_date < " + end + "and Reservations.st_date > " + start + "))";
+
+        return dao.executeQuery(statement, null);
+    }
+
     public static List<Room> selectAll() {
         String statement = "SELECT * FROM Rooms";
         return dao.executeQuery(statement, null);
