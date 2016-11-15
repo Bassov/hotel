@@ -15,5 +15,5 @@ public class Reservation {
     Timestamp st_date;
     Timestamp end_date;
     int key_id;
-
+    boolean approved;
 }
