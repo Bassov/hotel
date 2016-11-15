@@ -16,8 +16,9 @@ public class Application {
 
         // Hotels
         get(Path.Web.HOTELS_NEW, HotelController.newHotel);
-        get(Path.Web.HOTELS_INDEX, HotelController.indexHotels);
-        post(Path.Web.HOTELS_CREATE, HotelController.createHotel);
+        get(Path.Web.HOTELS_INDEX, HotelController.index);
+        get(Path.Web.HOTELS_SHOW, HotelController.show);
+        post(Path.Web.HOTELS_CREATE, HotelController.create);
 
         // Employees
         get(Path.Web.EMPLOYEES_INDEX, EmployeeController.indexEmployees);

@@ -1,0 +1,6 @@
+#parse("/templates/layout.vm")
+#@mainLayout()
+    <h1>Hotel #$hotel.getId()</h1>
+    <p>City: $hotel.getCity()</p>
+    <p>Address: $hotel.getAddress()</p>
+#end

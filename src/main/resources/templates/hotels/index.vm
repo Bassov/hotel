@@ -13,7 +13,9 @@
     <tbody>
         #foreach($hotel in $hotels)
             <tr>
-                <th scope="row">$hotel.getId()</th>
+                <th scope="row">
+                    <a href="/hotels/$hotel.getId()">$hotel.getId()</a>
+                </th>
                 <td>$hotel.getCity()</td>
                 <td>$hotel.getAddress()</td>
             </tr>

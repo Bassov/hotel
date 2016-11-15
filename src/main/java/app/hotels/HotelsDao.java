@@ -24,6 +24,11 @@ public class HotelsDao extends AbstractDao<Hotel> {
         return dao.executeQuery(statement, null);
     }
 
+    public static Hotel find(String id) {
+        String statement = "SELECT * FROM hotels WHERE id = " + id;
+        return dao.findByKey(statement, null);
+    }
+
     @Override
     protected Function<ResultSet, List<Hotel>> mapToObject() {
         return (rs) -> {

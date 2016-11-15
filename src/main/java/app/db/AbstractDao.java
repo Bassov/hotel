@@ -50,19 +50,10 @@ public abstract class AbstractDao<T> {
         List<T> entities = executeQuery(statement, primaryKey);
         return entities.get(0);
     }
-//
-//    public List<T> selectAll() {
-//        String statement = "SELECT * FROM hotels";
-//        return executeQuery(statement, new DBParams());
-//    }
 
     protected abstract Function<ResultSet, List<T>> mapToObject();
-//
-//    private String className() {
-//        return
-//    }
 
-    private static Connection createConnection() {
+    protected static Connection createConnection() {
         Connection con = null;
         try {
             con = DriverManager.getConnection(LINK, LOGIN, PASSWORD);
