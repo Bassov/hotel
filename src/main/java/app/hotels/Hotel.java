@@ -1,18 +1,13 @@
 package app.hotels;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@Value
+@Data @AllArgsConstructor
 public class Hotel {
 
     int id;
     String city;
     String address;
-
-    public Hotel(int id, String city, String address) {
-        this.id = id;
-        this.city = city;
-        this.address = address;
-    }
 
 }
