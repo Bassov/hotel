@@ -64,6 +64,7 @@ CREATE TABLE Reservations (
   st_date TIMESTAMP ,
   end_date TIMESTAMP ,
   key_id INTEGER REFERENCES EKeys,
+  approved BOOLEAN,
   FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE
 );
 

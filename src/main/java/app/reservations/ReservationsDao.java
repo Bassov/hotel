@@ -38,6 +38,16 @@ public class ReservationsDao extends AbstractDao<Reservation> {
         return dao.executeQuery(statement, null);
     }
 
+    public static List<Reservation> selectUnapproved() {
+        String statement = "SELECT * FROM reservations WHERE approved = false";
+        return dao.executeQuery(statement, null);
+    }
+
+    public static List<Reservation> selectApproved() {
+        String statement = "SELECT * FROM reservations WHERE approved = true";
+        return dao.executeQuery(statement, null);
+    }
+
     @Override
     protected Function<ResultSet, List<Reservation>> mapToObject() {
         return (rs) -> {
