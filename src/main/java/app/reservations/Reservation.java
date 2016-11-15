@@ -3,7 +3,7 @@ package app.reservations;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 @Data @AllArgsConstructor
 public class Reservation {
@@ -12,8 +12,8 @@ public class Reservation {
     String guest_mail;
     int room_number;
     int hotel_id;
-    Timestamp st_date;
-    Timestamp end_date;
+    Date st_date;
+    Date end_date;
     int key_id;
     boolean approved;
 
