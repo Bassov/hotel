@@ -45,6 +45,11 @@ public abstract class AbstractDao<T> {
 
         return toReturn;
     }
+
+    public T findByKey(String statement, DBParams primaryKey) {
+        List<T> entities = executeQuery(statement, primaryKey);
+        return entities.get(0);
+    }
 //
 //    public List<T> selectAll() {
 //        String statement = "SELECT * FROM hotels";
