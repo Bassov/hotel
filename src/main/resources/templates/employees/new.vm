@@ -1,0 +1,56 @@
+#parse("/templates/layout.vm")
+#@mainLayout()
+<script src="/js/employees/new.js"></script>
+<form>
+    <div class="form-group">
+        <label for="inputName">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Enter employees first name">
+    </div>
+    <div class="form-group">
+        <label for="inputSurname">Surname</label>
+        <input type="text" class="form-control" id="inputSurname" placeholder="Enter employees second name">
+    </div>
+    <div class="form-group">
+        <label for="exampleSelect1">Select hotel</label>
+        <select class="form-control" id="exampleSelect1">
+            #foreach($hotel in $hotels)
+                <option>$hotel.toString()</option>
+            #end
+        </select>
+    </div>
+
+    <fieldset class="form-group">
+        <legend>Select role for new employee</legend>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="staffOption" value="staff" checked>
+                To staff
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="admOption" value="admin">
+                To administrators
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="optionsRadios" id="ownerOption" value="owner">
+                Owner of selected hotel
+            </label>
+        </div>
+    </fieldset>
+
+    <div id="usersForm" class="hidden">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Login</label>
+            <input type="text" class="form-control" id="inputLogin" placeholder="Login">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+#end
