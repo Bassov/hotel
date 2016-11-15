@@ -25,6 +25,11 @@ public class GuestsDao extends AbstractDao<Guest>{
         return dao.executeQuery(statement, null);
     }
 
+    public static Guest find(String mail) {
+        String statement = "SELECT * FROM guests WHERE mail = " + mail;
+        return dao.findByKey(statement, null);
+    }
+
     @Override
     protected Function<ResultSet, List<Guest>> mapToObject() {
         return (rs) -> {
