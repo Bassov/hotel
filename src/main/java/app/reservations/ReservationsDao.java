@@ -3,9 +3,9 @@ package app.reservations;
 import app.db.AbstractDao;
 import app.db.DBParams;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -17,21 +17,14 @@ public class ReservationsDao extends AbstractDao<Reservation> {
     public static void insert(String guest_mail,
                               int room_number,
                               int hotel_id,
-                              Timestamp st_date,
-                              Timestamp end_date,
-                              int key_id,
+                              Date st_date,
+                              Date end_date,
                               boolean approved) {
         String stm = "INSERT INTO Reservations( guest_mail, room_number, hotel_id, st_date," +
                                                 "end_date, key_id, approved) VALUES(?, "+room_number+","+
                                                 hotel_id+","+st_date.toString()+","+end_date.toString()+
-                                                ","+key_id+","+approved+")";
-        DBParams params = new DBParams(guest_mail,
-                                       String.valueOf(room_number),
-                                       String.valueOf(hotel_id),
-                                       String.valueOf(st_date),
-                                       String.valueOf(end_date),
-                                       String.valueOf(key_id),
-                                       String.valueOf(approved));
+                                                ","+approved+")";
+        DBParams params = new DBParams(guest_mail);
         dao.executeUpdate(stm, params);
     }
 
@@ -50,6 +43,11 @@ public class ReservationsDao extends AbstractDao<Reservation> {
         return dao.executeQuery(statement, null);
     }
 
+    public static Reservation find(String id) {
+        String statement = "SELECT * FROM reservations WHERE id = " + id;
+        return dao.findByKey(statement, null);
+    }
+
     @Override
     protected Function<ResultSet, List<Reservation>> mapToObject() {
         return (rs) -> {
@@ -60,8 +58,8 @@ public class ReservationsDao extends AbstractDao<Reservation> {
                                                rs.getString(2),
                                                rs.getInt(3),
                                                rs.getInt(4),
-                                               rs.getTimestamp(5),
-                                               rs.getTimestamp(6),
+                                               rs.getDate(5),
+                                               rs.getDate(6),
                                                rs.getInt(7),
                                                rs.getBoolean(8)));
                 }
