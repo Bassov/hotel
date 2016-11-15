@@ -21,8 +21,10 @@ public class ReservationsDao extends AbstractDao<Reservation> {
                               Timestamp end_date,
                               int key_id,
                               boolean approved) {
-        String stm = "INSERT INTO Reservations(guest_mail, room_number, hotel_id, st_date," +
-                                              "end_date, key_id, approved) VALUES(?, ?)";
+        String stm = "INSERT INTO Reservations( guest_mail, room_number, hotel_id, st_date," +
+                                                "end_date, key_id, approved) VALUES(?, "+room_number+","+
+                                                hotel_id+","+st_date.toString()+","+end_date.toString()+
+                                                ","+key_id+","+approved+")";
         DBParams params = new DBParams(guest_mail,
                                        String.valueOf(room_number),
                                        String.valueOf(hotel_id),

@@ -1,0 +1,11 @@
+#parse("/templates/layout.vm")
+#@mainLayout()
+<h1>Reservation #$reservation.getId()</h1>
+<p>Guest_mail: $reservation.getGuest_mail()</p>
+<p>Room_number: $reservation.getRoom_number()</p>
+<p>Hotel_id: $reservation.getHotel_id()</p>
+<p>St_date: $reservation.getSt_date()</p>
+<p>End_date: $reservation.getEnd_date()</p>
+<p>Key_id: $reservation.getKey_id()</p>
+<p>Approved: $reservation.getApproved()</p>
+#end
