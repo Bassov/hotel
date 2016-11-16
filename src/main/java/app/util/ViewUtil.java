@@ -11,6 +11,7 @@ import spark.template.velocity.VelocityTemplateEngine;
 import java.util.HashMap;
 import java.util.Map;
 
+import static app.util.RequestUtil.getAlert;
 import static app.util.RequestUtil.getSessionCurrentUser;
 
 public class ViewUtil {
@@ -21,6 +22,10 @@ public class ViewUtil {
     public static String render(Request request, Map<String, Object> model, String templatePath) {
         model.put("currentUser", getSessionCurrentUser(request));
         model.put("WebPath", Path.Web.class); // Access application URLs from templates
+        String alert = getAlert(request);
+        if (alert != null) {
+            model.put("alert", alert);
+        }
         return strictVelocityEngine().render(new ModelAndView(model, templatePath));
     }
 

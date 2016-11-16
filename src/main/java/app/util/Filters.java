@@ -19,4 +19,8 @@ public class Filters {
         response.header("Content-Encoding", "gzip");
     };
 
+    public static Filter removeMsg = (Request request, Response response) -> {
+        request.session().removeAttribute("alert");
+    };
+
 }

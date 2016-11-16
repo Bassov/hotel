@@ -23,6 +23,10 @@ public class RequestUtil {
         return emp;
     }
 
+    public static String getAlert(Request request) {
+        return request.session().attribute("alert");
+    }
+
     public static String queryValue(Request request, String atr) {
         return request.queryMap(atr).value();
     }

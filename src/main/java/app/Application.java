@@ -45,6 +45,7 @@ public class Application {
         get (Path.Web.DASHBOARD,           LoginController.dashboard);
 
         after("*",                         Filters.addGzipHeader);
+        after(Path.Web.DASHBOARD,          Filters.removeMsg);
     }
 
 }
