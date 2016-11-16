@@ -8,20 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class RoomsDao extends AbstractDao<Room>{
+public class RoomsDao extends AbstractDao<Room> {
 
     private static final RoomsDao dao = new RoomsDao();
 
     public static void insert(int hotel_id, int number) {
-        String stm = "INSERT INTO Rooms(hotel_id, number) VALUES("+hotel_id+","+number+","+2+")";
+        String stm = "INSERT INTO Rooms(hotel_id, number) VALUES(" + hotel_id + "," + number + "," + 2 + ")";
         dao.executeUpdate(stm, null);
     }
 
     public static List<Room> selectByHotelAndDates(String hotel_id, String start, String end) {
         String statement = String.format(
                 "SELECT * FROM Rooms WHERE room_number " +
-                "NOT IN " +
-                "(SELECT room_number FROM Reservations " +
+                        "NOT IN " +
+                        "(SELECT room_number FROM Reservations " +
                         "WHERE Reservations.hotel_id = %s " +
                         "and ((Reservations.end_date > %s and Reservations.end_date < %s) " +
                         "or (Reservations.st_date < %sand Reservations.st_date > %s))"
