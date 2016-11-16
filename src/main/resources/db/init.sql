@@ -29,7 +29,8 @@ CREATE TABLE Hotels (
   id SERIAL PRIMARY KEY ,
   city VARCHAR NOT NULL ,
   address VARCHAR NOT NULL ,
-  owner_login VARCHAR REFERENCES Owners
+  owner_login VARCHAR REFERENCES Owners,
+  UNIQUE (city, address)
 );
 
 CREATE TABLE Administrators (
