@@ -11,7 +11,6 @@
         <th>Hotel_ID</th>
         <th>St_Date</th>
         <th>End_Date</th>
-        <th>Key_ID</th>
         <th>Approved</th>
     </tr>
     </thead>
@@ -26,7 +25,6 @@
             <td>$reservation.getHotel_id()</td>
             <td>$reservation.getSt_date()</td>
             <td>$reservation.getEnd_date()</td>
-            <td>$reservation.getKey_id()</td>
             <td>$reservation.getApproved()</td>
         </tr>
         #end

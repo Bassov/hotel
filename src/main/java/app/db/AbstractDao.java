@@ -47,8 +47,9 @@ public abstract class AbstractDao<T> {
             }
 
             ResultSet rst = pst.executeQuery();
+
             toReturn = mapToObject().apply(rst);
-        } catch (SQLException e) {
+        } catch (SQLException|NullPointerException e) {
             e.printStackTrace();
         }
 

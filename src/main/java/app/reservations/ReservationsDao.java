@@ -1,11 +1,8 @@
 package app.reservations;
 
 import app.db.AbstractDao;
-import app.db.DBParams;
 
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -21,11 +18,18 @@ public class ReservationsDao extends AbstractDao<Reservation> {
                               Date end_date,
                               boolean approved) {
         String stm = "INSERT INTO Reservations( guest_mail, room_number, hotel_id, st_date," +
-                "end_date, key_id, approved) VALUES(?, " + room_number + "," +
-                hotel_id + "," + st_date.toString() + "," + end_date.toString() +
-                "," + approved + ")";
-        DBParams params = new DBParams(guest_mail);
-        dao.executeUpdate(stm, params);
+                "end_date, approved) VALUES('"+guest_mail+"', '" + room_number + "','" +
+                hotel_id + "', ?, ? ,'" + approved + "')";
+        try (
+                Connection con = createConnection();
+                PreparedStatement pst = con.prepareStatement(stm);
+        ) {
+            pst.setDate(1, st_date);
+            pst.setDate(2, end_date);
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static List<Reservation> selectAll() {
@@ -60,8 +64,7 @@ public class ReservationsDao extends AbstractDao<Reservation> {
                             rs.getInt(4),
                             rs.getDate(5),
                             rs.getDate(6),
-                            rs.getInt(7),
-                            rs.getBoolean(8)));
+                            rs.getBoolean(7)));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

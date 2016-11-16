@@ -2,10 +2,11 @@ package app.rooms;
 
 import app.db.AbstractDao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Function;
 
 public class RoomsDao extends AbstractDao<Room> {
@@ -18,17 +19,38 @@ public class RoomsDao extends AbstractDao<Room> {
     }
 
     public static List<Room> selectByHotelAndDates(String hotel_id, String start, String end) {
-        String statement = String.format(
-                "SELECT * FROM Rooms WHERE room_number " +
-                        "NOT IN " +
-                        "(SELECT room_number FROM Reservations " +
-                        "WHERE Reservations.hotel_id = %s " +
-                        "and ((Reservations.end_date > %s and Reservations.end_date < %s) " +
-                        "or (Reservations.st_date < %sand Reservations.st_date > %s))"
-                , hotel_id, start, end, end, start
-        );
 
-        return dao.executeQuery(statement, null);
+        String statement =
+                "SELECT * FROM Rooms WHERE number " +
+                        "NOT IN " +
+                        "(SELECT Reservations.room_number FROM Reservations " +
+                        "WHERE hotel_id = '" +hotel_id+"' " +
+                        "and ((end_date > ? and end_date < ? " +
+                        "or (st_date < ? and st_date > ?))))";
+
+        try (
+                Connection con = createConnection();
+                PreparedStatement pst = con.prepareStatement(statement);
+                ){
+
+            java.sql.Date date = new java.sql.Date(
+                    new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(start).getTime());
+
+            pst.setDate(1, date);
+            pst.setDate(4, date);
+
+            date = new java.sql.Date(
+                    new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(end).getTime());
+
+            pst.setDate(2, date);
+            pst.setDate(3, date);
+
+            ResultSet rst = pst.executeQuery();
+            return dao.mapToObject().apply(rst);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static List<Room> selectAll() {

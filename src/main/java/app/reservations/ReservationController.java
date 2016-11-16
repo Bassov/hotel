@@ -14,8 +14,10 @@ import spark.Route;
 
 import java.net.URLDecoder;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import static app.util.RequestUtil.queryValue;
 
@@ -39,28 +41,36 @@ public class ReservationController {
         String mail = URLDecoder.decode(queryValue(request, "email"),  "UTF-8");
         String name = queryValue(request, "name");
         String lastName = queryValue(request, "lastName");
-        String phone = queryValue(request, "phone");
 
         Guest guest = GuestsDao.find(mail);
 
         if (guest == null) {
-            GuestsDao.insert(mail, name, lastName, phone);
+            GuestsDao.insert(mail, name, lastName);
         }
 
         String hotel_id = queryValue(request, "hotelId");
         String start = URLDecoder.decode(queryValue(request, "stDate"), "UTF-8");
         String end = URLDecoder.decode(queryValue(request, "endDate"), "UTF-8");
+
         int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
+        List<Room> rooms;
+
         for (int i = 0; i < number_of_rooms; i++) {
-            List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
+            rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
             if (rooms.isEmpty()){
 //                response.redirect(Path.Web.RESERVATIONS_ERROR);
             } else {
+                Date st = new java.sql.Date(
+                        new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(start).getTime());
+
+                Date en = new java.sql.Date(
+                        new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(end).getTime());
+
                 ReservationsDao.insert(mail,
                         rooms.get(0).getNumber(),
                         Integer.parseInt(hotel_id),
-                        Date.valueOf(start),
-                        Date.valueOf(end),
+                        st,
+                        en,
                         false);
             }
         }
