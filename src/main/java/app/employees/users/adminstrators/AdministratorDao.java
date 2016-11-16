@@ -21,7 +21,7 @@ public class AdministratorDao extends AbstractDao<Administrator> {
     }
 
     public static Administrator findByLogin(String login) {
-        String statement = "SELECT * FROM administrators WHERE user_login = " + login;
+        String statement = String.format("SELECT * FROM administrators WHERE user_login = '%s'", login);
         return dao.findByKey(statement, null);
     }
 

@@ -7,6 +7,5 @@ import lombok.Data;
 public class Owner {
 
     String login;
-    int hotel_id;
 
 }

@@ -20,7 +20,7 @@ public class OwnerDao extends AbstractDao<Owner> {
     }
 
     public static Owner findByLogin(String login) {
-        String statement = "SELECT * FROM owners WHERE user_login = " + login;
+        String statement = String.format("SELECT * FROM owners WHERE user_login = '%s'", login);
         return dao.findByKey(statement, null);
     }
 
@@ -35,7 +35,7 @@ public class OwnerDao extends AbstractDao<Owner> {
             List<Owner> result = new ArrayList<>();
             try {
                 while (rs.next()) {
-                    result.add(new Owner(rs.getString(1), rs.getInt(2)));
+                    result.add(new Owner(rs.getString(1)));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

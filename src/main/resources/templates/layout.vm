@@ -29,6 +29,20 @@
 
             </div>
             <div class="container col-md-4">
+                #if ($currentUser)
+                    <p>
+                        $currentUser.getFullName()
+                        $currentUser.isOwner()
+                        $currentUser.isAdmin()
+                        $currentUser.isStaffMember()
+                    </p>
+                #end
+                #if ($alert)
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Oh snap! </strong>$alert
+                    </div>
+                #end
+
                 <main>
                     $bodyContent
                 </main>

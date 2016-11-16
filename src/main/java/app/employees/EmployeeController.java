@@ -15,6 +15,8 @@ import spark.Route;
 import java.util.HashMap;
 import java.util.List;
 
+import static app.util.RequestUtil.queryValue;
+
 public class EmployeeController {
 
     public static Route index = (Request request, Response response) -> {
@@ -65,9 +67,5 @@ public class EmployeeController {
         response.redirect(Path.Web.HOTELS_INDEX);
         return null;
     };
-
-    private static String queryValue(Request request, String atr) {
-        return request.queryMap(atr).value();
-    }
 
 }

@@ -26,7 +26,6 @@ public abstract class AbstractDao<T> {
                 rst.next();
                 return rst.getInt(1);
             }
-            System.out.println(statement);
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

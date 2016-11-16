@@ -2,6 +2,7 @@ package app;
 
 import app.employees.EmployeeController;
 import app.hotels.HotelController;
+import app.login.LoginController;
 import app.reservations.ReservationController;
 import app.util.Path;
 
@@ -30,6 +31,13 @@ public class Application {
         get(Path.Web.RESERVATIONS_INDEX, ReservationController.index);
         get(Path.Web.RESERVATIONS_NEW, ReservationController.newReservation);
         post(Path.Web.RESERVATIONS_CREATE, ReservationController.create);
+
+        //Login
+        get(Path.Web.LOGIN, LoginController.login);
+        post(Path.Web.LOGIN_POST, LoginController.create);
+
+        //Dashboard
+        get(Path.Web.DASHBOARD, LoginController.dashboard);
     }
 
 }

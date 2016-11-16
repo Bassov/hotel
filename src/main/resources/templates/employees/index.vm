@@ -7,7 +7,7 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>lastName</th>
+        <th>Lastname</th>
         <th>Role</th>
     </tr>
     </thead>

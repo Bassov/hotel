@@ -21,6 +21,11 @@ public class Path {
         @Getter public static final String RESERVATIONS_NEW = "/";
         @Getter public static final String RESERVATIONS_CREATE = "/reservations/new";
         @Getter public static final String RESERVATIONS_SHOW = "/reservations/:id";
+
+        @Getter public static final String LOGIN = "/login";
+        @Getter public static final String LOGIN_POST = "/login";
+
+        @Getter public static final String DASHBOARD = "/dashboard";
     }
 
     public static class Template {
@@ -35,6 +40,9 @@ public class Path {
         public static final String RESERVATION_NEW = "templates/reservations/new.vm";
         public static final String RESERVATION_INDEX = "templates/reservations/index.vm";
         public static final String RESERVATION_SHOW = "templates/reservations/show.vm";
+
+        public static final String LOGIN = "templates/login/login.vm";
+        public static final String DASHBOARD = "templates/login/dashboard.vm";
     }
 
 }

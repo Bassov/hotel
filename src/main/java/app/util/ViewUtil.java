@@ -11,13 +11,15 @@ import spark.template.velocity.VelocityTemplateEngine;
 import java.util.HashMap;
 import java.util.Map;
 
+import static app.util.RequestUtil.getSessionCurrentUser;
+
 public class ViewUtil {
 
     // Renders a template given a model and a request
     // The request is needed to check the user session for language settings
     // and to see if the user is logged in
     public static String render(Request request, Map<String, Object> model, String templatePath) {
-//        model.put("currentUser", getSessionCurrentUser(request));
+        model.put("currentUser", getSessionCurrentUser(request));
         model.put("WebPath", Path.Web.class); // Access application URLs from templates
         return strictVelocityEngine().render(new ModelAndView(model, templatePath));
     }

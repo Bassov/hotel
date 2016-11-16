@@ -1,11 +1,6 @@
 #parse("/templates/layout.vm")
 #@mainLayout()
 <script src="/js/employees/new.js"></script>
-#if ($alert)
-    <div class="alert alert-danger" role="alert">
-        <strong>Oh snap! </strong>$alert
-    </div>
-#end
 <h1>Add new employee</h1>
 <form method="post">
     <div class="form-group">
@@ -13,7 +8,7 @@
         <input name="name" type="text" class="form-control" id="inputName" placeholder="Enter employees first name">
     </div>
     <div class="form-group">
-        <label for="inputlastName">lastName</label>
+        <label for="inputlastName">Lastname</label>
         <input name="lastName" type="text" class="form-control" id="inputlastName" placeholder="Enter employees second name">
     </div>
     <div class="form-group">
