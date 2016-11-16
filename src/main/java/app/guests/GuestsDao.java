@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.Function;
 
 
-public class GuestsDao extends AbstractDao<Guest>{
+public class GuestsDao extends AbstractDao<Guest> {
 
     private static final GuestsDao dao = new GuestsDao();
 

@@ -21,9 +21,9 @@ public class ReservationsDao extends AbstractDao<Reservation> {
                               Date end_date,
                               boolean approved) {
         String stm = "INSERT INTO Reservations( guest_mail, room_number, hotel_id, st_date," +
-                                                "end_date, key_id, approved) VALUES(?, "+room_number+","+
-                                                hotel_id+","+st_date.toString()+","+end_date.toString()+
-                                                ","+approved+")";
+                "end_date, key_id, approved) VALUES(?, " + room_number + "," +
+                hotel_id + "," + st_date.toString() + "," + end_date.toString() +
+                "," + approved + ")";
         DBParams params = new DBParams(guest_mail);
         dao.executeUpdate(stm, params);
     }
@@ -55,13 +55,13 @@ public class ReservationsDao extends AbstractDao<Reservation> {
             try {
                 while (rs.next()) {
                     result.add(new Reservation(rs.getInt(1),
-                                               rs.getString(2),
-                                               rs.getInt(3),
-                                               rs.getInt(4),
-                                               rs.getDate(5),
-                                               rs.getDate(6),
-                                               rs.getInt(7),
-                                               rs.getBoolean(8)));
+                            rs.getString(2),
+                            rs.getInt(3),
+                            rs.getInt(4),
+                            rs.getDate(5),
+                            rs.getDate(6),
+                            rs.getInt(7),
+                            rs.getBoolean(8)));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

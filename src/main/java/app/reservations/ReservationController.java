@@ -24,7 +24,7 @@ public class ReservationController {
     public static Route index = (Request request, Response response) -> {
 //        LoginController.ensureUserIsLoggedIn(request, response);
         List<Reservation> reservations = ReservationsDao.selectAll();
-        HashMap<String,Object> model = new HashMap<>();
+        HashMap<String, Object> model = new HashMap<>();
         model.put("reservations", reservations);
         return ViewUtil.render(request, model, Path.Template.RESERVATION_INDEX);
     };
@@ -53,12 +53,16 @@ public class ReservationController {
         int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
         for (int i = 0; i < number_of_rooms; i++) {
             List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
-            ReservationsDao.insert(mail,
-                                   rooms.get(0).getNumber(),
-                                   Integer.parseInt(hotel_id),
-                                   Date.valueOf(start),
-                                   Date.valueOf(end),
-                                   false);
+            if (rooms.isEmpty()){
+//                response.redirect(Path.Web.RESERVATIONS_ERROR);
+            } else {
+                ReservationsDao.insert(mail,
+                        rooms.get(0).getNumber(),
+                        Integer.parseInt(hotel_id),
+                        Date.valueOf(start),
+                        Date.valueOf(end),
+                        false);
+            }
         }
 
         response.redirect(Path.Web.RESERVATIONS_INDEX);
@@ -70,7 +74,7 @@ public class ReservationController {
         String reservation_id = request.params(":id");
         Reservation reservation = ReservationsDao.find(reservation_id);
 
-        HashMap<String,Object> model = new HashMap<>();
+        HashMap<String, Object> model = new HashMap<>();
         model.put("reservation", reservation);
 
         return ViewUtil.render(request, model, Path.Template.RESERVATION_SHOW);

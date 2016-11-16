@@ -5,7 +5,8 @@ import lombok.Data;
 
 import java.sql.Date;
 
-@Data @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class Reservation {
 
     int id;
