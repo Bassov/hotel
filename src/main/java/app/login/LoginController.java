@@ -49,10 +49,17 @@ public class LoginController {
 
     public static void ensureUserIsLoggedIn(Request request, Response response) {
         if (request.session().attribute("currentUser") == null) {
-            request.session().attribute("loginRedirect", request.pathInfo());
             response.redirect(Path.Web.RESERVATIONS_NEW);
         }
-    };
+    }
+
+    public static void allowOwners(Request request, Response response) {
+        Employee emp = EmployeeDao.findByLogin(request.session().attribute("currentUser"));
+        if (!emp.isOwner()) {
+            request.session().attribute("alert", "You are not owner of hotel");
+            response.redirect(Path.Web.DASHBOARD);
+        }
+    }
 
     public static Route dashboard = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
