@@ -46,8 +46,7 @@ CREATE TABLE Staff (
 CREATE TABLE Guests (
   mail VARCHAR PRIMARY KEY ,
   name VARCHAR NOT NULL ,
-  lastName VARCHAR NOT NULL ,
-  phone VARCHAR NOT NULL
+  lastName VARCHAR NOT NULL
 );
 
 CREATE TABLE Rooms (
@@ -64,7 +63,6 @@ CREATE TABLE Reservations (
   hotel_id INTEGER ,
   st_date DATE ,
   end_date DATE ,
-  key_id INTEGER REFERENCES EKeys,
   approved BOOLEAN,
   FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE
 );
