@@ -19,11 +19,15 @@
                     <a class="nav-link" href="$WebPath.getHOTELS_INDEX()">Hotels list
                     </a>
                 </li>
+                #if ($currentUser.isOwner())
                 <li class="nav-item active">
                     <a class="nav-link" href="$WebPath.getHOTELS_NEW()">Create new hotel</a>
                 </li>
+                #end
                 <li class="nav-item active">
-                    <a class="nav-link" href="$WebPath.getEMPLOYEES_INDEX()">List employees</a>
+                    <a class="nav-link" href="/hotels/$currentUser.getHotelId()/employees/">
+                        List employees
+                    </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="$WebPath.getEMPLOYEES_NEW()">Add employee</a>
@@ -43,14 +47,14 @@
 
             </div>
             <div class="container col-md-4">
-                #if ($currentUser)
-                    <p>
-                        $currentUser.getFullName()
-                        $currentUser.isOwner()
-                        $currentUser.isAdmin()
-                        $currentUser.isStaffMember()
-                    </p>
-                #end
+##                #if ($currentUser)
+##                    <p>
+##                        $currentUser.getFullName()
+##                        $currentUser.isOwner()
+##                        $currentUser.isAdmin()
+##                        $currentUser.isStaffMember()
+##                    </p>
+##                #end
                 #if ($alert)
                     <div class="alert alert-danger" role="alert">
                         <strong>Oh snap! </strong>$alert

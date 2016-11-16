@@ -11,8 +11,10 @@ import app.employees.users.owners.OwnerDao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class EmployeeDao extends AbstractDao<Employee> {
 
@@ -26,6 +28,20 @@ public class EmployeeDao extends AbstractDao<Employee> {
 
     public static List<Employee> selectAll() {
         String statement = "SELECT * FROM employees";
+        return dao.executeQuery(statement, null);
+    }
+
+    public static List<Employee> selectByHotel(String hotel_id) {
+        String statement = String.format(
+                "SELECT E.id, E.name, E.lastName FROM Employees E " +
+                "  LEFT JOIN Staff S " +
+                "    ON E.id = S.emp_id " +
+                "  LEFT JOIN Users U " +
+                "    ON E.id = U.emp_id " +
+                "  LEFT JOIN Administrators A " +
+                "    ON U.login = A.user_login " +
+                "WHERE S.hotel_id = %s OR A.hotel_id = %s",
+                hotel_id, hotel_id);
         return dao.executeQuery(statement, null);
     }
 
@@ -62,7 +78,9 @@ public class EmployeeDao extends AbstractDao<Employee> {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            return result;
+            return result.stream()
+                    .sorted(Comparator.comparing(Employee::getId))
+                    .collect(Collectors.toList());
         };
     }
 

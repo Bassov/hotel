@@ -1,5 +1,8 @@
 package app.employees;
 
+import app.employees.users.adminstrators.AdministratorDao;
+import app.employees.users.owners.OwnerDao;
+import app.hotels.HotelsDao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -39,6 +42,18 @@ public class Employee {
     public boolean isOwner() {
         String id = String.valueOf(this.id);
         return EmployeeDao.isOwner(id);
+    }
+
+    public String getHotelId() {
+        if (isAdmin()) {
+            return AdministratorDao.findByEmpId(id + "").getHotel_id() + "";
+        }
+
+        if (isOwner()) {
+            return HotelsDao.findIdByOwner(OwnerDao.findByEmpId(id + "").getLogin());
+        }
+
+        return "";
     }
 
     public String getFullName() {

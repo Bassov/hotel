@@ -21,10 +21,15 @@ import static app.util.RequestUtil.queryValue;
 public class EmployeeController {
 
     public static Route index = (Request request, Response response) -> {
-        LoginController.ensureUserIsLoggedIn(request, response);
-        List<Employee> employees = EmployeeDao.selectAll();
         HashMap<String,Object> model = new HashMap<>();
-        model.put("employees", employees);
+        try {
+            LoginController.ensureUserIsLoggedIn(request, response);
+            String hotel_id = request.params(":id");
+            List<Employee> employees = EmployeeDao.selectByHotel(hotel_id);
+            model.put("employees", employees);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ViewUtil.render(request, model, Path.Template.EMPLOYEES_INDEX);
     };
 

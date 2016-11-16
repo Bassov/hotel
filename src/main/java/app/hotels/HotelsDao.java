@@ -35,6 +35,11 @@ public class HotelsDao extends AbstractDao<Hotel> {
         return dao.findByKey(statement, null);
     }
 
+    public static String findIdByOwner(String owner_login) {
+        String statement = String.format("SELECT * FROM hotels H WHERE owner_login = '%s'", owner_login);
+        return dao.findByKey(statement, null).id + "";
+    }
+
     @Override
     protected Function<ResultSet, List<Hotel>> mapToObject() {
         return (rs) -> {

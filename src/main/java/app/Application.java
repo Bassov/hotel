@@ -23,10 +23,10 @@ public class Application {
         get (Path.Web.HOTELS_NEW,          HotelController.newHotel);
         get (Path.Web.HOTELS_INDEX,        HotelController.index);
         get (Path.Web.HOTELS_SHOW,         HotelController.show);
+        get (Path.Web.HOTELS_EMPLOYEES,    EmployeeController.index);
         post(Path.Web.HOTELS_CREATE,       HotelController.create);
 
         // Employees
-        get (Path.Web.EMPLOYEES_INDEX,     EmployeeController.index);
         get (Path.Web.EMPLOYEES_NEW,       EmployeeController.newEmployee);
         post(Path.Web.EMPLOYEES_CREATE,    EmployeeController.create);
 
