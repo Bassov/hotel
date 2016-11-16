@@ -1,24 +1,88 @@
-#parse("/templates/layout.vm")
-#@mainLayout()
-<h1>Create New Reservation</h1>
+###parse("/templates/layout.vm")
+###@mainLayout()
+##<h1>Create New Reservation</h1>
+##
+##<form method="post">
+##    Guest_mail:<br>
+##    <input type="text" name="mail"><br>
+##    Name:<br>
+##    <input type="text" name="name"><br>
+##    lastName:<br>
+##    <input type="text" name="lastName"><br>
+##    Phone:<br>
+##    <input type="text" name="phone"><br>
+##    Hotel_id:<br>
+##    <input type="text" name="hotel_id"><br>
+##    St_date:<br>
+##    <input type="text" name="st_date"><br>
+##    End_date:<br>
+##    <input type="text" name="end_date"><br>
+##    Number_of_people:<br>
+##    <input type="text" name="number_of_rooms"><br>
+##    <input type="submit" value="Submit">
+##</form>
+###end
 
-<form method="post">
-    Guest_mail:<br>
-    <input type="text" name="mail"><br>
-    Name:<br>
-    <input type="text" name="name"><br>
-    lastName:<br>
-    <input type="text" name="lastName"><br>
-    Phone:<br>
-    <input type="text" name="phone"><br>
-    Hotel_id:<br>
-    <input type="text" name="hotel_id"><br>
-    St_date:<br>
-    <input type="text" name="st_date"><br>
-    End_date:<br>
-    <input type="text" name="end_date"><br>
-    Number_of_people:<br>
-    <input type="text" name="number_of_rooms"><br>
-    <input type="submit" value="Submit">
-</form>
-#end
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+##    <link rel="icon" href="/favicon.ico">
+
+    <title>Book room in 2G1H</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
+    <script src="/lib/jquery.min.js" ></script>
+    <script src="/lib/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="/reservations/new.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container col-md-1 offset-md-11">
+        <a href="$WebPath.getLOGIN()">
+            login
+        </a>
+    </div>
+
+    <div id="center" class="semi">
+        <div class="col-md-8 offset-md-1">
+            <h3>Book today</h3>
+            <form method="post">
+                <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input name="name" type="text" class="form-control" id="inputName" placeholder="Enter employees first name">
+                </div>
+                <div class="form-group">
+                    <label for="inputlastName">Lastname</label>
+                    <input name="lastName" type="text" class="form-control" id="inputlastName" placeholder="Enter employees second name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect1">Select hotel</label>
+                    <select name="hotelId" class="form-control" id="exampleSelect1">
+                        #foreach($hotel in $hotels)
+                            <option value="$hotel.getId()">$hotel.toString()</option>
+                        #end
+                    </select>
+                </div>
+
+                <div id="usersForm">
+                    <div class="form-group">
+                        <label for="inputLogin">Login</label>
+                        <input name="login" type="text" class="form-control" id="inputLogin" placeholder="Login">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Book now</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

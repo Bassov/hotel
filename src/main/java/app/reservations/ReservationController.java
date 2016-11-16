@@ -2,6 +2,7 @@ package app.reservations;
 
 import app.guests.Guest;
 import app.guests.GuestsDao;
+import app.hotels.Hotel;
 import app.rooms.Room;
 import app.rooms.RoomsDao;
 import app.util.Path;
@@ -24,7 +25,9 @@ public class ReservationController {
     };
 
     public static Route newReservation = (Request request, Response response) -> {
-        return ViewUtil.render(request, new HashMap<>(), Path.Template.RESERVATION_NEW);
+        HashMap<String,Object> model = new HashMap<>();
+        model.put("hotels", Hotel.all());
+        return ViewUtil.render(request, model, Path.Template.RESERVATION_NEW);
     };
 
     public static Route create = (Request request, Response response) -> {
