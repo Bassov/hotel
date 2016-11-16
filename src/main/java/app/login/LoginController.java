@@ -49,7 +49,7 @@ public class LoginController {
 
     public static void ensureUserIsLoggedIn(Request request, Response response) {
         if (request.session().attribute("currentUser") == null) {
-            response.redirect(Path.Web.RESERVATIONS_NEW);
+            response.redirect(Path.Web.LOGIN);
         }
     }
 

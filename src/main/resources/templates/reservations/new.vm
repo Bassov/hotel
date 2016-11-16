@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-##    <link rel="icon" href="/favicon.ico">
 
     <title>Book room in 2G1H</title>
 
@@ -32,12 +31,6 @@
 </head>
 
 <body>
-    <div class="container col-md-1 offset-md-11">
-        <a href="$WebPath.getLOGIN()">
-            login
-        </a>
-    </div>
-
     <div id="center" class="semi">
         <div class="col-md-10 offset-md-1">
             <h3 style="padding: 18px; padding-top: 30px;">Book today</h3>
