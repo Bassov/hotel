@@ -10,13 +10,13 @@ body {
     top: 33%;
     left: 30%;
     width:30em;
-    height:33em;
+    height:32em;
     margin-top: -9em; /*set to a negative number 1/2 of your height*/
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
     /*border: 1px solid #ccc;*/
     border-radius: 25px;
-    background-color: rgba(0, 72, 229, 0.9);
+    background-color: rgba(255, 255, 255, 0.2);
     position: fixed;
-    color: black;
+    color: white;
 }
 

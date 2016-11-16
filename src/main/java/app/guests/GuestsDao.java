@@ -26,7 +26,7 @@ public class GuestsDao extends AbstractDao<Guest>{
     }
 
     public static Guest find(String mail) {
-        String statement = "SELECT * FROM guests WHERE mail = " + mail;
+        String statement = String.format("SELECT * FROM guests WHERE mail = '%s'", mail);
         return dao.findByKey(statement, null);
     }
 

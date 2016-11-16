@@ -12,14 +12,17 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+import java.net.URLDecoder;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import static app.util.RequestUtil.queryValue;
+
 public class ReservationController {
 
     public static Route index = (Request request, Response response) -> {
-        LoginController.ensureUserIsLoggedIn(request, response);
+//        LoginController.ensureUserIsLoggedIn(request, response);
         List<Reservation> reservations = ReservationsDao.selectAll();
         HashMap<String,Object> model = new HashMap<>();
         model.put("reservations", reservations);
@@ -33,10 +36,10 @@ public class ReservationController {
     };
 
     public static Route create = (Request request, Response response) -> {
-        String mail = request.queryMap("mail").value();
-        String name = request.queryMap("name").value();
-        String lastName = request.queryMap("lastName").value();
-        String phone = request.queryMap("phone").value();
+        String mail = URLDecoder.decode(queryValue(request, "email"),  "UTF-8");
+        String name = queryValue(request, "name");
+        String lastName = queryValue(request, "lastName");
+        String phone = queryValue(request, "phone");
 
         Guest guest = GuestsDao.find(mail);
 
@@ -44,10 +47,10 @@ public class ReservationController {
             GuestsDao.insert(mail, name, lastName, phone);
         }
 
-        String hotel_id = request.queryMap("hotel_id").value();
-        String start = request.queryMap("st_date").value();
-        String end = request.queryMap("end_date").value();
-        int number_of_rooms = Integer.parseInt(request.queryMap("number_of_rooms").value());
+        String hotel_id = queryValue(request, "hotelId");
+        String start = URLDecoder.decode(queryValue(request, "stDate"), "UTF-8");
+        String end = URLDecoder.decode(queryValue(request, "endDate"), "UTF-8");
+        int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
         for (int i = 0; i < number_of_rooms; i++) {
             List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
             ReservationsDao.insert(mail,

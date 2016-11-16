@@ -1,28 +1,3 @@
-###parse("/templates/layout.vm")
-###@mainLayout()
-##<h1>Create New Reservation</h1>
-##
-##<form method="post">
-##    Guest_mail:<br>
-##    <input type="text" name="mail"><br>
-##    Name:<br>
-##    <input type="text" name="name"><br>
-##    lastName:<br>
-##    <input type="text" name="lastName"><br>
-##    Phone:<br>
-##    <input type="text" name="phone"><br>
-##    Hotel_id:<br>
-##    <input type="text" name="hotel_id"><br>
-##    St_date:<br>
-##    <input type="text" name="st_date"><br>
-##    End_date:<br>
-##    <input type="text" name="end_date"><br>
-##    Number_of_people:<br>
-##    <input type="text" name="number_of_rooms"><br>
-##    <input type="submit" value="Submit">
-##</form>
-###end
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,11 +10,25 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="/lib/bootstrap.min.css">
-    <script src="/lib/jquery.min.js" ></script>
-    <script src="/lib/bootstrap.min.js"></script>
-
     <!-- Custom styles for this template -->
     <link href="/reservations/new.css" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
+    <script>
+        $( function() {
+            $( "#datepicker2" ).datepicker();
+        } );
+    </script>
 </head>
 
 <body>
@@ -50,36 +39,66 @@
     </div>
 
     <div id="center" class="semi">
-        <div class="col-md-8 offset-md-1">
-            <h3>Book today</h3>
-            <form method="post">
-                <div class="form-group">
-                    <label for="inputName">Name</label>
-                    <input name="name" type="text" class="form-control" id="inputName" placeholder="Enter employees first name">
+        <div class="col-md-10 offset-md-1">
+            <h3 style="padding: 18px; padding-top: 30px;">Book today</h3>
+            <form method="post" action="$WebPath.getRESERVATIONS_CREATE()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputName">Name</label>
+                            <input name="name" type="text" class="form-control" id="inputName" placeholder="First name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputlastName">Lastname</label>
+                            <input name="lastName" type="text" class="form-control" id="inputlastName" placeholder="Second name">
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputlastName">Lastname</label>
-                    <input name="lastName" type="text" class="form-control" id="inputlastName" placeholder="Enter employees second name">
+                <div class="row">
+                    <div class="col-md-8">
+                        Select hotel
+                    </div>
+                    <div class="col-md-4">
+                        Num of rooms
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="exampleSelect1">Select hotel</label>
-                    <select name="hotelId" class="form-control" id="exampleSelect1">
-                        #foreach($hotel in $hotels)
-                            <option value="$hotel.getId()">$hotel.toString()</option>
-                        #end
-                    </select>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <select name="hotelId" class="form-control" id="exampleSelect1">
+                                #foreach($hotel in $hotels)
+                                    <option value="$hotel.getId()">$hotel.toString()</option>
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="usersForm">
+                            <div class="form-group">
+                                <input name="number" type="number" class="form-control" id="num">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
                 <div id="usersForm">
                     <div class="form-group">
-                        <label for="inputLogin">Login</label>
-                        <input name="login" type="text" class="form-control" id="inputLogin" placeholder="Login">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        <label for="email">Email</label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="Email">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="stDate">Starting date</label>
+                        <input name="stDate" type="text" class="form-control" id="datepicker">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="endDate">Ending date</label>
+                        <input name="endDate" type="text" class="form-control" id="datepicker2">
+                    </div>
+                </div>
+                <p></p>
                 <button type="submit" class="btn btn-primary">Book now</button>
             </form>
         </div>
