@@ -6,6 +6,7 @@ import app.employees.users.adminstrators.AdministratorDao;
 import app.employees.users.owners.OwnerDao;
 import app.hotels.Hotel;
 import app.hotels.HotelsDao;
+import app.login.LoginController;
 import app.util.Path;
 import app.util.ViewUtil;
 import spark.Request;
@@ -20,6 +21,7 @@ import static app.util.RequestUtil.queryValue;
 public class EmployeeController {
 
     public static Route index = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         List<Employee> employees = EmployeeDao.selectAll();
         HashMap<String,Object> model = new HashMap<>();
         model.put("employees", employees);
@@ -27,12 +29,14 @@ public class EmployeeController {
     };
 
     public static Route newEmployee = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         HashMap<String,Object> model = new HashMap<>();
         model.put("hotels", Hotel.all());
         return ViewUtil.render(request, model, Path.Template.EMPLOYEES_NEW);
     };
 
     public static Route create = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         String name = queryValue(request, "name");
         String lastName = queryValue(request, "lastName");
         String hotelId = queryValue(request, "hotelId");

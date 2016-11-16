@@ -16,7 +16,7 @@
         <tr>
             <th scope="row">$emp.getId()</th>
             <td>$emp.getName()</td>
-            <td>$emp.getlastName()</td>
+            <td>$emp.getLastName()</td>
             <td>$emp.getStatus()</td>
         </tr>
         #end

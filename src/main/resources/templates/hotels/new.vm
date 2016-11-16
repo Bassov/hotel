@@ -1,12 +1,15 @@
 #parse("/templates/layout.vm")
 #@mainLayout()
 <h1>Create New Hotel</h1>
-
 <form method="post">
-    City:<br>
-    <input type="text" name="city"><br>
-    Address:<br>
-    <input type="text" name="address"><br>
-    <input type="submit" value="Submit">
+    <div class="form-group">
+        <label for="city">City</label>
+        <input name="city" type="text" class="form-control" id="inputName" placeholder="City">
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input name="address" type="text" class="form-control" id="inputlastName" placeholder="Address">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 #end

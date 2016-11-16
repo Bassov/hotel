@@ -3,6 +3,7 @@ package app.reservations;
 import app.guests.Guest;
 import app.guests.GuestsDao;
 import app.hotels.Hotel;
+import app.login.LoginController;
 import app.rooms.Room;
 import app.rooms.RoomsDao;
 import app.util.Path;
@@ -18,6 +19,7 @@ import java.util.List;
 public class ReservationController {
 
     public static Route index = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         List<Reservation> reservations = ReservationsDao.selectAll();
         HashMap<String,Object> model = new HashMap<>();
         model.put("reservations", reservations);
@@ -61,6 +63,7 @@ public class ReservationController {
     };
 
     public static Route show = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         String reservation_id = request.params(":id");
         Reservation reservation = ReservationsDao.find(reservation_id);
 

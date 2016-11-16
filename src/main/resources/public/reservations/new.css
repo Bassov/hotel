@@ -17,5 +17,6 @@ body {
     border-radius: 25px;
     background-color: rgba(0, 72, 229, 0.9);
     position: fixed;
+    color: black;
 }
 

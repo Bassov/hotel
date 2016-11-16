@@ -32,15 +32,30 @@ public class LoginController {
             model.put("alert", "Wrong login or password");
             return ViewUtil.render(request, model, Path.Template.LOGIN);
         }
-        Employee emp = EmployeeDao.findByLogin(login);
 
-        model.put("authenticationSucceeded", true);
+        Employee emp = EmployeeDao.findByLogin(login);
+        model.put("success", "You successfully logged in " + emp.getFullName());
         request.session().attribute("currentUser", login);
         response.redirect(Path.Web.DASHBOARD);
         return null;
     };
 
+    public static Route logout = (Request request, Response response) -> {
+        request.session().removeAttribute("currentUser");
+        request.session().attribute("loggedOut", true);
+        response.redirect(Path.Web.RESERVATIONS_NEW);
+        return null;
+    };
+
+    public static void ensureUserIsLoggedIn(Request request, Response response) {
+        if (request.session().attribute("currentUser") == null) {
+            request.session().attribute("loginRedirect", request.pathInfo());
+            response.redirect(Path.Web.RESERVATIONS_NEW);
+        }
+    };
+
     public static Route dashboard = (Request request, Response response) -> {
+        LoginController.ensureUserIsLoggedIn(request, response);
         return ViewUtil.render(request, new HashMap<>(), Path.Template.DASHBOARD);
     };
 

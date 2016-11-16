@@ -37,6 +37,7 @@ public class Application {
 
         //Login
         get (Path.Web.LOGIN,               LoginController.login);
+        get (Path.Web.LOGOUT,              ReservationController.newReservation);
         post(Path.Web.LOGOUT,              LoginController.logout);
         post(Path.Web.LOGIN_POST,          LoginController.create);
 
