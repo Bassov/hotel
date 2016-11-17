@@ -64,11 +64,6 @@
                 </main>
             </div>
         </div>
-        <div id="footer">
-            <div class="container">
-                <p class="muted credit">Made by Nikitos and Alexandr</p>
-            </div>
-        </div>
     </body>
 </html>
 #end
