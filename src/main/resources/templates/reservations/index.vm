@@ -25,7 +25,7 @@
             <td>$reservation.getHotel_id()</td>
             <td>$reservation.getSt_date()</td>
             <td>$reservation.getEnd_date()</td>
-            <td>$reservation.getApproved()</td>
+            <td>$reservation.isApproved()</td>
         </tr>
         #end
     </tbody>

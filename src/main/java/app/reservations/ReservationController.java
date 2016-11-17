@@ -24,7 +24,7 @@ import static app.util.RequestUtil.queryValue;
 public class ReservationController {
 
     public static Route index = (Request request, Response response) -> {
-//        LoginController.ensureUserIsLoggedIn(request, response);
+        LoginController.ensureUserIsLoggedIn(request, response);
         List<Reservation> reservations = ReservationsDao.selectAll();
         HashMap<String, Object> model = new HashMap<>();
         model.put("reservations", reservations);

@@ -7,5 +7,5 @@
 <p>St_date: $reservation.getSt_date()</p>
 <p>End_date: $reservation.getEnd_date()</p>
 <p>Key_id: $reservation.getKey_id()</p>
-<p>Approved: $reservation.getApproved()</p>
+<p>Approved: $reservation.isApproved()</p>
 #end
