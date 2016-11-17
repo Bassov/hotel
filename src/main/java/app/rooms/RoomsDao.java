@@ -1,12 +1,14 @@
 package app.rooms;
 
 import app.db.AbstractDao;
+import app.util.SqlUtil;
 
-import java.sql.*;
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Function;
 
 public class RoomsDao extends AbstractDao<Room> {
@@ -33,17 +35,11 @@ public class RoomsDao extends AbstractDao<Room> {
                 PreparedStatement pst = con.prepareStatement(statement);
                 ){
 
-            java.sql.Date date = new java.sql.Date(
-                    new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(start).getTime());
+            pst.setDate(1, SqlUtil.parseDate(start));
+            pst.setDate(4, SqlUtil.parseDate(start));
 
-            pst.setDate(1, date);
-            pst.setDate(4, date);
-
-            date = new java.sql.Date(
-                    new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(end).getTime());
-
-            pst.setDate(2, date);
-            pst.setDate(3, date);
+            pst.setDate(2, SqlUtil.parseDate(end));
+            pst.setDate(3, SqlUtil.parseDate(end));
 
             ResultSet rst = pst.executeQuery();
             return dao.mapToObject().apply(rst);

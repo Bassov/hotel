@@ -7,17 +7,15 @@ import app.login.LoginController;
 import app.rooms.Room;
 import app.rooms.RoomsDao;
 import app.util.Path;
+import app.util.SqlUtil;
 import app.util.ViewUtil;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 import java.net.URLDecoder;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import static app.util.RequestUtil.queryValue;
 
@@ -60,17 +58,17 @@ public class ReservationController {
             if (rooms.isEmpty()){
 //                response.redirect(Path.Web.RESERVATIONS_ERROR);
             } else {
-                Date st = new java.sql.Date(
-                        new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(start).getTime());
-
-                Date en = new java.sql.Date(
-                        new SimpleDateFormat("dd/MM/yyyy", Locale.US).parse(end).getTime());
+//                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//                format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
+//                Date st = new java.sql.Date(format.parse(start).getTime());
+//
+//                Date en = new java.sql.Date(format.parse(end).getTime());
 
                 ReservationsDao.insert(mail,
                         rooms.get(0).getNumber(),
                         Integer.parseInt(hotel_id),
-                        st,
-                        en,
+                        SqlUtil.parseDate(start),
+                        SqlUtil.parseDate(end),
                         false);
             }
         }
