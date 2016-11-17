@@ -19,8 +19,7 @@ public class RequestUtil {
     }
 
     public static Employee getSessionCurrentUser(Request request) {
-        Employee emp = EmployeeDao.findByLogin(request.session().attribute("currentUser"));
-        return emp;
+        return EmployeeDao.findByLogin(request.session().attribute("currentUser"));
     }
 
     public static String getAlert(Request request) {

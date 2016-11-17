@@ -23,14 +23,14 @@ import static app.util.RequestUtil.*;
 
 public class LoginController {
 
-    public static Route login = (Request request, Response response) -> {
+    public static final Route login = (Request request, Response response) -> {
         Map<String, Object> model = new HashMap<>();
         model.put("loggedOut", removeSessionAttrLoggedOut(request));
         model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
         return ViewUtil.render(request, model, Path.Template.LOGIN);
     };
 
-    public static Route create = (Request request, Response response) -> {
+    public static final Route create = (Request request, Response response) -> {
         String login = queryValue(request, "login");
         String password = queryValue(request, "password");
 
@@ -47,7 +47,7 @@ public class LoginController {
         return null;
     };
 
-    public static Route logout = (Request request, Response response) -> {
+    public static final Route logout = (Request request, Response response) -> {
         request.session().removeAttribute("currentUser");
         request.session().attribute("loggedOut", true);
         response.redirect(Path.Web.RESERVATIONS_NEW);
@@ -70,7 +70,7 @@ public class LoginController {
         }
     }
 
-    public static Route dashboard = (Request request, Response response) -> {
+    public static final Route dashboard = (Request request, Response response) -> {
         if (!ensureUserIsLoggedIn(request, response)) {
             return null;
         }

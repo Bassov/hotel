@@ -10,10 +10,10 @@ public abstract class AbstractDao<T> {
     private static final String LOGIN = "hotel_adm";
     private static final String PASSWORD = "Zz20164209";
 
-    public int executeUpdate(String statement, DBParams params) {
+    protected int executeUpdate(String statement, DBParams params) {
         try (
                 Connection con = createConnection();
-                PreparedStatement pst = con.prepareStatement(statement);
+                PreparedStatement pst = con.prepareStatement(statement)
         ) {
             if (params != null) {
                 for (int i = 1; i <= params.size(); i++) {
@@ -33,7 +33,7 @@ public abstract class AbstractDao<T> {
         return 0;
     }
 
-    public List<T> executeQuery(String statement, DBParams params) {
+    protected List<T> executeQuery(String statement, DBParams params) {
         List<T> toReturn = null;
         try (
                 Connection con = createConnection();
@@ -56,7 +56,7 @@ public abstract class AbstractDao<T> {
         return toReturn;
     }
 
-    public T findByKey(String statement, DBParams primaryKey) {
+    protected T findByKey(String statement, DBParams primaryKey) {
         List<T> entities = executeQuery(statement, primaryKey);
         if (entities.isEmpty()) {
             return null;

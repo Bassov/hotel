@@ -19,9 +19,9 @@
 <body>
 <div id="center" class="semi">
     <div class="col-md-10 offset-md-1">
-        <h3 style="padding: 18px; padding-top: 30px;">Sorry!</h3>
+        <h3 style="padding: 30px 18px 18px;">Sorry!</h3>
         <p>Something went wrong</p>
-        <p>We dont have that much rooms available</p>
+        <p>We don't have that much rooms available</p>
         <p>Or you entered wrong info into form</p>
     </div>
 </div>

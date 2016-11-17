@@ -22,13 +22,13 @@ import static app.util.RequestUtil.queryValue;
 
 public class ReservationController {
 
-    public static Route newReservation = (Request request, Response response) -> {
+    public static final Route newReservation = (Request request, Response response) -> {
         HashMap<String,Object> model = new HashMap<>();
         model.put("hotels", Hotel.all());
         return ViewUtil.render(request, model, Path.Template.RESERVATION_NEW);
     };
 
-    public static Route create = (Request request, Response response) -> {
+    public static final Route create = (Request request, Response response) -> {
         String mail = URLDecoder.decode(queryValue(request, "email"),  "UTF-8");
         String name = queryValue(request, "name");
         String lastName = queryValue(request, "lastName");
@@ -79,7 +79,7 @@ public class ReservationController {
         return ViewUtil.render(request, model, Path.Template.RESERVATION_SHOW);
     };
 
-    public static Route approve = (Request request, Response response) -> {
+    public static final Route approve = (Request request, Response response) -> {
         ensureUserIsLoggedIn(request, response);
         String reservation_id = request.params(":id");
         ReservationsDao.setApproved(reservation_id);
@@ -87,7 +87,7 @@ public class ReservationController {
         return null;
     };
 
-    public static Route delete = (Request request, Response response) -> {
+    public static final Route delete = (Request request, Response response) -> {
         ensureUserIsLoggedIn(request, response);
         String reservation_id = request.params(":id");
         ReservationsDao.deleteById(reservation_id);
@@ -95,11 +95,11 @@ public class ReservationController {
         return null;
     };
 
-    public static Route success = (Request request, Response response) -> {
+    public static final Route success = (Request request, Response response) -> {
         return ViewUtil.render(request, new HashMap<>(), Path.Template.RESERVATION_SUCCESS);
     };
 
-    public static Route error = (Request request, Response response) -> {
+    public static final Route error = (Request request, Response response) -> {
         return ViewUtil.render(request, new HashMap<>(), Path.Template.RESERVATION_ERROR);
     };
 

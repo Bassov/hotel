@@ -20,7 +20,7 @@ import static app.util.RequestUtil.queryValue;
 
 public class EmployeeController {
 
-    public static Route index = (Request request, Response response) -> {
+    public static final Route index = (Request request, Response response) -> {
         HashMap<String,Object> model = new HashMap<>();
         try {
             LoginController.ensureUserIsLoggedIn(request, response);
@@ -33,14 +33,14 @@ public class EmployeeController {
         return ViewUtil.render(request, model, Path.Template.EMPLOYEES_INDEX);
     };
 
-    public static Route newEmployee = (Request request, Response response) -> {
+    public static final Route newEmployee = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
         HashMap<String,Object> model = new HashMap<>();
         model.put("hotels", Hotel.all());
         return ViewUtil.render(request, model, Path.Template.EMPLOYEES_NEW);
     };
 
-    public static Route create = (Request request, Response response) -> {
+    public static final Route create = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
         String name = queryValue(request, "name");
         String lastName = queryValue(request, "lastName");

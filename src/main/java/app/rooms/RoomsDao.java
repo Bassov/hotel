@@ -36,8 +36,8 @@ public class RoomsDao extends AbstractDao<Room> {
 
         try (
                 Connection con = createConnection();
-                PreparedStatement pst = con.prepareStatement(statement);
-                ){
+                PreparedStatement pst = con.prepareStatement(statement)
+        ){
 
             pst.setDate(1, start);
             pst.setDate(4, start);

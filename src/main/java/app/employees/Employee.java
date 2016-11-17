@@ -26,7 +26,7 @@ public class Employee {
             return "Owner of Hotel";
         }
 
-        return "Hui kakoi-to";
+        return "Has no role";
     }
 
     public boolean isAdmin() {

@@ -22,7 +22,7 @@ public class ReservationsDao extends AbstractDao<Reservation> {
                 hotel_id + "', ?, ? ,'" + approved + "')";
         try (
                 Connection con = createConnection();
-                PreparedStatement pst = con.prepareStatement(stm);
+                PreparedStatement pst = con.prepareStatement(stm)
         ) {
             pst.setDate(1, st_date);
             pst.setDate(2, end_date);

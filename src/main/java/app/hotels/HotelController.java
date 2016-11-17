@@ -12,7 +12,7 @@ import java.util.List;
 
 public class HotelController {
 
-    public static Route index = (Request request, Response response) -> {
+    public static final Route index = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
         List<Hotel> hotels = HotelsDao.selectAll();
         HashMap<String,Object> model = new HashMap<>();
@@ -20,13 +20,13 @@ public class HotelController {
         return ViewUtil.render(request, model, Path.Template.HOTEL_INDEX);
     };
 
-    public static Route newHotel = (Request request, Response response) -> {
+    public static final Route newHotel = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
         LoginController.allowOwners(request, response);
         return ViewUtil.render(request, new HashMap<>(), Path.Template.HOTEL_NEW);
     };
 
-    public static Route create = (Request request, Response response) -> {
+    public static final Route create = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
         String city = request.queryMap("city").value();
         String address = request.queryMap("address").value();
@@ -36,7 +36,7 @@ public class HotelController {
         return null;
     };
 
-    public static Route show = (Request request, Response response) -> {
+    public static final Route show = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
         String hotel_id = request.params(":id");
         Hotel hotel = HotelsDao.find(hotel_id);

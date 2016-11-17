@@ -1,22 +1,14 @@
 package app.db;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DBParams {
 
-    private ArrayList<String> container = new ArrayList<>();
+    private final ArrayList<String> container = new ArrayList<>();
 
     public DBParams(String... args) {
-        for (String s : args) {
-            container.add(s);
-        }
-    }
-
-    public DBParams() {
-    }
-
-    public void add(String parameter) {
-        container.add(parameter);
+        Collections.addAll(container, args);
     }
 
     public int size() {
