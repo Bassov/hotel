@@ -22,7 +22,7 @@ public class HotelController {
 
     public static final Route newHotel = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
-        LoginController.allowOwners(request, response);
+        LoginController.allowManagers(request, response);
         return ViewUtil.render(request, new HashMap<>(), Path.Template.HOTEL_NEW);
     };
 

@@ -36,8 +36,8 @@
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="role" id="ownerOption" value="owner">
-                Owner of selected hotel
+                <input type="radio" class="form-check-input" name="role" id="managerOption" value="manager">
+                Manager of selected hotel
             </label>
         </div>
     </fieldset>

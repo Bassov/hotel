@@ -16,7 +16,7 @@ CREATE TABLE Users (
   password VARCHAR
 );
 
-CREATE TABLE Owners (
+CREATE TABLE Managers (
   user_login VARCHAR PRIMARY KEY REFERENCES Users ON DELETE CASCADE
 );
 
@@ -24,7 +24,7 @@ CREATE TABLE Hotels (
   id SERIAL PRIMARY KEY ,
   city VARCHAR NOT NULL ,
   address VARCHAR NOT NULL ,
-  owner_login VARCHAR REFERENCES Owners,
+  manager_login VARCHAR REFERENCES Managers,
   UNIQUE (city, address)
 );
 

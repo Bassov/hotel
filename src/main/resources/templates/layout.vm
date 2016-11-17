@@ -19,7 +19,7 @@
                     <a class="nav-link" href="$WebPath.getHOTELS_INDEX()">Hotels list
                     </a>
                 </li>
-                #if ($currentUser.isOwner())
+                #if ($currentUser.isManager())
                 <li class="nav-item active">
                     <a class="nav-link" href="$WebPath.getHOTELS_NEW()">Create new hotel</a>
                 </li>

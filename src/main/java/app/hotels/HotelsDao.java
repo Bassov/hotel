@@ -19,8 +19,8 @@ public class HotelsDao extends AbstractDao<Hotel> {
         dao.executeUpdate(stm, params);
     }
 
-    public static void setOwner(String hotelId, String login) {
-        String stm = String.format("UPDATE hotels SET owner_login = '%s' WHERE id = %s",
+    public static void setManager(String hotelId, String login) {
+        String stm = String.format("UPDATE hotels SET manager_login = '%s' WHERE id = %s",
                 login, hotelId);
         dao.executeUpdate(stm, null);
     }
@@ -35,8 +35,8 @@ public class HotelsDao extends AbstractDao<Hotel> {
         return dao.findByKey(statement, null);
     }
 
-    public static String findIdByOwner(String owner_login) {
-        String statement = String.format("SELECT * FROM hotels H WHERE owner_login = '%s'", owner_login);
+    public static String findIdByManager(String manager_login) {
+        String statement = String.format("SELECT * FROM hotels H WHERE manager_login = '%s'", manager_login);
         return dao.findByKey(statement, null).id + "";
     }
 

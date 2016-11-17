@@ -13,15 +13,15 @@ public class Hotel {
     int id;
     String city;
     String address;
-    String owner_login;
+    String manager_login;
 
     public static List<Hotel> all() {
         return HotelsDao.selectAll();
     }
 
-    public String getOwnerFullName() {
-        Employee emp = EmployeeDao.findByLogin(owner_login);
-        return emp == null ? "Has no owner" : emp.getFullName();
+    public String getManagerFullName() {
+        Employee emp = EmployeeDao.findByLogin(manager_login);
+        return emp == null ? "Has no manager" : emp.getFullName();
     }
 
     public String toString() {

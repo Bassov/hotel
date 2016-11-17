@@ -62,10 +62,10 @@ public class LoginController {
         return true;
     }
 
-    public static void allowOwners(Request request, Response response) {
+    public static void allowManagers(Request request, Response response) {
         Employee emp = RequestUtil.getSessionCurrentUser(request);
-        if (!emp.isOwner()) {
-            request.session().attribute("alert", "You are not owner of hotel");
+        if (!emp.isManager()) {
+            request.session().attribute("alert", "You are not manager of hotel");
             response.redirect(Path.Web.DASHBOARD);
         }
     }
@@ -87,12 +87,12 @@ public class LoginController {
                 .collect(Collectors.toList());
 
         Hotel hotel = HotelsDao.find(hotelId);
-        Employee owner = EmployeeDao.findByLogin(hotel.getOwner_login());
+        Employee manager = EmployeeDao.findByLogin(hotel.getManager_login());
 
         model.put("approved", approved);
         model.put("notApproved", notApproved);
         model.put("hotel", hotel);
-        model.put("owner", owner);
+        model.put("manager", manager);
 
         return ViewUtil.render(request, model, Path.Template.DASHBOARD);
     };

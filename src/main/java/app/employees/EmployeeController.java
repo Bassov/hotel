@@ -3,7 +3,7 @@ package app.employees;
 import app.employees.staff.StaffMemberDao;
 import app.employees.users.UserDao;
 import app.employees.users.adminstrators.AdministratorDao;
-import app.employees.users.owners.OwnerDao;
+import app.employees.users.managers.ManagerDao;
 import app.hotels.Hotel;
 import app.hotels.HotelsDao;
 import app.login.LoginController;
@@ -66,10 +66,10 @@ public class EmployeeController {
                 UserDao.insert(emp_id, login, password);
                 AdministratorDao.insert(login, hotelId);
                 break;
-            case "owner":
+            case "manager":
                 UserDao.insert(emp_id, login, password);
-                OwnerDao.insert(login);
-                HotelsDao.setOwner(hotelId, login);
+                ManagerDao.insert(login);
+                HotelsDao.setManager(hotelId, login);
                 break;
         }
 

@@ -24,14 +24,14 @@ public class RoomsDao extends AbstractDao<Room> {
     public static List<Room> selectByHotelAndDates(String hotel_id, Date start, Date end) {
 
         String statement =
-                "SELECT * FROM Rooms WHERE number " +
+                "SELECT * FROM Rooms WHERE hotel_id = " + hotel_id + " AND number " +
                         "NOT IN " +
                         "(SELECT Reservations.room_number FROM Reservations " +
                         "WHERE hotel_id = '" +hotel_id+"' " +
                         "and ((end_date > ? and end_date < ?) " +
                         "or (st_date < ? and st_date > ?)" +
                         "or (st_date < ? and end_date > ?)" +
-                        "or st_date = ? or st_date = ?" +
+                        "or st_date = ? or st_date = ? " +
                         "or end_date = ? or end_date = ?))";
 
         try (
@@ -53,7 +53,6 @@ public class RoomsDao extends AbstractDao<Room> {
 
             pst.setDate(9, start);
             pst.setDate(10, end);
-
 
             ResultSet rst = pst.executeQuery();
             return dao.mapToObject().apply(rst);

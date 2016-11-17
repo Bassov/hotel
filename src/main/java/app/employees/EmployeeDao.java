@@ -6,7 +6,7 @@ import app.employees.staff.StaffMemberDao;
 import app.employees.users.User;
 import app.employees.users.UserDao;
 import app.employees.users.adminstrators.AdministratorDao;
-import app.employees.users.owners.OwnerDao;
+import app.employees.users.managers.ManagerDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,8 +63,8 @@ public class EmployeeDao extends AbstractDao<Employee> {
         return AdministratorDao.findByEmpId(empId) != null;
     }
 
-    public static boolean isOwner(String empId) {
-        return OwnerDao.findByEmpId(empId) != null;
+    public static boolean isManager(String empId) {
+        return ManagerDao.findByEmpId(empId) != null;
     }
 
     @Override

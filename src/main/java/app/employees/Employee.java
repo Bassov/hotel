@@ -1,7 +1,7 @@
 package app.employees;
 
 import app.employees.users.adminstrators.AdministratorDao;
-import app.employees.users.owners.OwnerDao;
+import app.employees.users.managers.ManagerDao;
 import app.hotels.HotelsDao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +22,8 @@ public class Employee {
             return "Staff Member";
         }
 
-        if (isOwner()) {
-            return "Owner of Hotel";
+        if (isManager()) {
+            return "Manager of Hotel";
         }
 
         return "Has no role";
@@ -39,9 +39,9 @@ public class Employee {
         return EmployeeDao.isStaff(id);
     }
 
-    public boolean isOwner() {
+    public boolean isManager() {
         String id = String.valueOf(this.id);
-        return EmployeeDao.isOwner(id);
+        return EmployeeDao.isManager(id);
     }
 
     public String getHotelId() {
@@ -49,8 +49,8 @@ public class Employee {
             return AdministratorDao.findByEmpId(id + "").getHotel_id() + "";
         }
 
-        if (isOwner()) {
-            return HotelsDao.findIdByOwner(OwnerDao.findByEmpId(id + "").getLogin());
+        if (isManager()) {
+            return HotelsDao.findIdByManager(ManagerDao.findByEmpId(id + "").getLogin());
         }
 
         return "";

@@ -11,7 +11,7 @@
     Address: $hotel.getAddress()
 </p>
 <p>
-    Owner: $hotel.getOwnerFullName()
+    Manager: $hotel.getManagerFullName()
 </p>
 
 <div class="col-md-6">

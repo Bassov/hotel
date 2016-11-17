@@ -7,7 +7,7 @@ $(document).ready(function() {
         $("#usersForm").removeClass('hidden');
     });
 
-    $("#ownerOption").click(function () {
+    $("#managerOption").click(function () {
         $("#usersForm").removeClass('hidden');
     });
 });

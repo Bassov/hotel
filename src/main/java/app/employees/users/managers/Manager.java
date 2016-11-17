@@ -1,10 +1,10 @@
-package app.employees.users.owners;
+package app.employees.users.managers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data @AllArgsConstructor
-public class Owner {
+public class Manager {
 
     String login;
 
