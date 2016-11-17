@@ -51,19 +51,18 @@ public class ReservationController {
         String end = URLDecoder.decode(queryValue(request, "endDate"), "UTF-8");
 
         int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
-        List<Room> rooms;
+        List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
+
+        if (rooms.isEmpty() || rooms.size() < number_of_rooms) {
+//            response.redirect(Path.Web.RESERVATIONS_ERROR);
+            return null;
+        }
 
         for (int i = 0; i < number_of_rooms; i++) {
             rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
             if (rooms.isEmpty()){
 //                response.redirect(Path.Web.RESERVATIONS_ERROR);
             } else {
-//                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//                format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-//                Date st = new java.sql.Date(format.parse(start).getTime());
-//
-//                Date en = new java.sql.Date(format.parse(end).getTime());
-
                 ReservationsDao.insert(mail,
                         rooms.get(0).getNumber(),
                         Integer.parseInt(hotel_id),
