@@ -51,8 +51,13 @@ public class ReservationController {
         String end = URLDecoder.decode(queryValue(request, "endDate"), "UTF-8");
 
         int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
+        List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
 
-        List<Room> rooms;
+        if (rooms.isEmpty() || rooms.size() < number_of_rooms) {
+//            response.redirect(Path.Web.RESERVATIONS_ERROR);
+            return null;
+        }
+
         for (int i = 0; i < number_of_rooms; i++) {
             rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
             if (rooms.isEmpty()){

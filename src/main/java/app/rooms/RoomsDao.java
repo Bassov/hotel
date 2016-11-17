@@ -20,6 +20,11 @@ public class RoomsDao extends AbstractDao<Room> {
         dao.executeUpdate(stm, null);
     }
 
+    public static List<Room> selectByHotel(String hotel_id){
+        String statement = "SELECT * FROM Rooms WHERE hotel_id = " + hotel_id;
+        return dao.executeQuery(statement, null);
+    }
+
     public static List<Room> selectByHotelAndDates(String hotel_id, String start, String end) {
 
         String statement =
