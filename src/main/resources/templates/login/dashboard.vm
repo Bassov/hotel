@@ -1,4 +1,78 @@
 #parse("/templates/layout.vm")
 #@mainLayout()
+<link rel="stylesheet" href="/login/dashboard.css">
+<h2>
+    Welcome $currentUser.getFullName()
+</h2>
+<h3>
+    Hotel info:
+</h3>
+<p>
+    Address: $hotel.getAddress()
+</p>
+<p>
+    Owner: $hotel.getOwnerFullName()
+</p>
 
+<div class="col-md-6">
+    <h4>Not approved reservations</h4>
+
+    <table class="table table-bordered" style="font-size: 13">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Mail</th>
+            <th>R #</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Approve</th>
+            <th>Dellete</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach($reservation in $notApproved)
+            <tr>
+                <th scope="row">
+                    <a href="/reservations/$reservation.getId()">$reservation.getId()</a>
+                </th>
+                <td>$reservation.getGuest_mail()</td>
+                <td>$reservation.getRoom_number()</td>
+                <td>$reservation.getSt_date()</td>
+                <td>$reservation.getEnd_date()</td>
+                <td>approve</td>
+                <td>dellete</td>
+            </tr>
+            #end
+        </tbody>
+    </table>
+</div>
+
+<div class="col-md-6">
+    <h4>Approved reservations</h4>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Mail</th>
+            <th>R #</th>
+            <th>Start</th>
+            <th>End</th>
+        </tr>
+        </thead>
+        <tbody>
+            #foreach($reservation in $approved)
+            <tr>
+                <th scope="row">
+                    <a href="/reservations/$reservation.getId()">$reservation.getId()</a>
+                </th>
+                <td>$reservation.getGuest_mail()</td>
+                <td>$reservation.getRoom_number()</td>
+                <td>$reservation.getSt_date()</td>
+                <td>$reservation.getEnd_date()</td>
+            </tr>
+            #end
+        </tbody>
+    </table>
+</div>
 #end

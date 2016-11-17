@@ -3,14 +3,21 @@ package app.login;
 import app.employees.Employee;
 import app.employees.EmployeeDao;
 import app.employees.users.UserController;
+import app.hotels.Hotel;
+import app.hotels.HotelsDao;
+import app.reservations.Reservation;
+import app.reservations.ReservationsDao;
 import app.util.Path;
+import app.util.RequestUtil;
 import app.util.ViewUtil;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static app.util.RequestUtil.*;
 
@@ -47,14 +54,16 @@ public class LoginController {
         return null;
     };
 
-    public static void ensureUserIsLoggedIn(Request request, Response response) {
+    public static boolean ensureUserIsLoggedIn(Request request, Response response) {
         if (request.session().attribute("currentUser") == null) {
             response.redirect(Path.Web.LOGIN);
+            return false;
         }
+        return true;
     }
 
     public static void allowOwners(Request request, Response response) {
-        Employee emp = EmployeeDao.findByLogin(request.session().attribute("currentUser"));
+        Employee emp = RequestUtil.getSessionCurrentUser(request);
         if (!emp.isOwner()) {
             request.session().attribute("alert", "You are not owner of hotel");
             response.redirect(Path.Web.DASHBOARD);
@@ -62,8 +71,30 @@ public class LoginController {
     }
 
     public static Route dashboard = (Request request, Response response) -> {
-        LoginController.ensureUserIsLoggedIn(request, response);
-        return ViewUtil.render(request, new HashMap<>(), Path.Template.DASHBOARD);
+        if (!ensureUserIsLoggedIn(request, response)) {
+            return null;
+        }
+        Map<String,Object> model = new HashMap<>();
+        Employee emp = RequestUtil.getSessionCurrentUser(request);
+        String hotelId = emp.getHotelId();
+        List<Reservation> all = ReservationsDao.selectByHotelId(hotelId);
+
+        List<Reservation> approved = all.stream()
+                .filter(Reservation::isApproved)
+                .collect(Collectors.toList());
+        List<Reservation> notApproved = all.stream()
+                .filter(r -> !r.isApproved())
+                .collect(Collectors.toList());
+
+        Hotel hotel = HotelsDao.find(hotelId);
+        Employee owner = EmployeeDao.findByLogin(hotel.getOwner_login());
+
+        model.put("approved", approved);
+        model.put("notApproved", notApproved);
+        model.put("hotel", hotel);
+        model.put("owner", owner);
+
+        return ViewUtil.render(request, model, Path.Template.DASHBOARD);
     };
 
 }
