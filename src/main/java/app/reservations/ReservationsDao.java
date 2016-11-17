@@ -52,6 +52,16 @@ public class ReservationsDao extends AbstractDao<Reservation> {
         return dao.executeQuery(statement, null);
     }
 
+    public static void setApproved(String id) {
+        String stm = "UPDATE Reservations SET approved = t WHERE id =" + id;
+        dao.executeUpdate(stm, null);
+    }
+
+    public static void deleteById(String id) {
+        String stm = "DELETE FROM Reservations WHERE id = "+id;
+        dao.executeUpdate(stm,null);
+    }
+
     public static Reservation find(String id) {
         String statement = "SELECT * FROM reservations WHERE id = " + id;
         return dao.findByKey(statement, null);
