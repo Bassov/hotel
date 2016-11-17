@@ -1,5 +1,11 @@
 INSERT INTO hotels (city, address) VALUES ('Innopolis', 'Universitetskaya 2/1');
 
+INSERT INTO rooms (hotel_id, number) VALUES (1, 101);
+INSERT INTO rooms (hotel_id, number) VALUES (1, 102);
+INSERT INTO rooms (hotel_id, number) VALUES (1, 103);
+INSERT INTO rooms (hotel_id, number) VALUES (1, 104);
+INSERT INTO rooms (hotel_id, number) VALUES (1, 105);
+
 INSERT INTO employees (name, lastName) VALUES ('Admin', 'Admin');
 INSERT INTO users (emp_id, login, password) VALUES (1, 'admin', 'password');
 INSERT INTO administrators (user_login, hotel_id) VALUES ('admin', 1);

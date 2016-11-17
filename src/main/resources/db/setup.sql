@@ -52,7 +52,7 @@ CREATE TABLE Guests (
 CREATE TABLE Rooms (
   hotel_id INTEGER REFERENCES Hotels ON DELETE CASCADE ,
   number INTEGER NOT NULL CHECK (number > 0) ,
-  capacity INTEGER NOT NULL ,
+  capacity INTEGER NOT NULL DEFAULT 2 ,
   PRIMARY KEY (hotel_id, number)
 );
 
