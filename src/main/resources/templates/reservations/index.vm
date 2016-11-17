@@ -6,11 +6,11 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Guest_mail</th>
-        <th>Room_number</th>
-        <th>Hotel_ID</th>
-        <th>St_Date</th>
-        <th>End_Date</th>
+        <th>Mail</th>
+        <th>Room #</th>
+        <th>Hotel #</th>
+        <th>Start</th>
+        <th>End</th>
         <th>Approved</th>
     </tr>
     </thead>

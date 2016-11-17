@@ -43,10 +43,7 @@
             #end
         </nav>
         <div id = "wrap">
-            <div class="container col-md-3">
-
-            </div>
-            <div class="container col-md-4">
+            <div class="container">
                 #if ($alert)
                     <div class="alert alert-danger" role="alert">
                         <strong>Oh snap! </strong>$alert
@@ -62,11 +59,6 @@
                 <main>
                     $bodyContent
                 </main>
-            </div>
-        </div>
-        <div id="footer">
-            <div class="container">
-                <p class="muted credit">Made by Nikitos and Alexandr</p>
             </div>
         </div>
     </body>
