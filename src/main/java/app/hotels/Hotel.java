@@ -7,9 +7,6 @@ import lombok.Data;
 
 import java.util.List;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.toList;
-
 @Data @AllArgsConstructor
 public class Hotel {
 
@@ -19,9 +16,7 @@ public class Hotel {
     String owner_login;
 
     public static List<Hotel> all() {
-        return HotelsDao.selectAll().stream()
-                .sorted(comparing(Hotel::getCity))
-                .collect(toList());
+        return HotelsDao.selectAll();
     }
 
     public String getOwnerFullName() {

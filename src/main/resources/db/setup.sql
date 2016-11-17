@@ -4,15 +4,10 @@ CREATE USER hotel_adm WITH PASSWORD 'Zz20164209';
 CREATE DATABASE hotel OWNER hotel_adm;
 \connect hotel hotel_adm
 
-CREATE TABLE EKeys (
-  id SERIAL PRIMARY KEY
-);
-
 CREATE TABLE Employees (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  lastName VARCHAR NOT NULL,
-  key_id INTEGER REFERENCES EKeys
+  lastName VARCHAR NOT NULL
 );
 
 CREATE TABLE Users (
@@ -63,14 +58,6 @@ CREATE TABLE Reservations (
   hotel_id INTEGER ,
   st_date DATE ,
   end_date DATE ,
-  approved BOOLEAN,
+  approved BOOLEAN DEFAULT FALSE ,
   FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE
-);
-
-CREATE TABLE RoomsKeys (
-  hotel_id INTEGER ,
-  room_number INTEGER ,
-  key_id INTEGER REFERENCES EKeys ON DELETE CASCADE ,
-  FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE ,
-  PRIMARY KEY (hotel_id, room_number, key_id)
 );

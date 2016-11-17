@@ -8,6 +8,7 @@
             <th>ID</th>
             <th>City</th>
             <th>Address</th>
+            <th>Owner</th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
                 </th>
                 <td>$hotel.getCity()</td>
                 <td>$hotel.getAddress()</td>
+                <td>$hotel.getOwnerFullName()</td>
             </tr>
         #end
     </tbody>

@@ -15,11 +15,10 @@ public class ReservationsDao extends AbstractDao<Reservation> {
                               int room_number,
                               int hotel_id,
                               Date st_date,
-                              Date end_date,
-                              boolean approved) {
+                              Date end_date) {
         String stm = "INSERT INTO Reservations( guest_mail, room_number, hotel_id, st_date," +
-                "end_date, approved) VALUES('"+guest_mail+"', '" + room_number + "','" +
-                hotel_id + "', ?, ? ,'" + approved + "')";
+                "end_date) VALUES('"+guest_mail+"', '" + room_number + "','" +
+                hotel_id + "', ?, ? )";
         try (
                 Connection con = createConnection();
                 PreparedStatement pst = con.prepareStatement(stm)

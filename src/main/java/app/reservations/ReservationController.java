@@ -53,15 +53,15 @@ public class ReservationController {
 
         for (int i = 0; i < number_of_rooms; i++) {
             rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
-            if (rooms.isEmpty()){
-            } else {
-                ReservationsDao.insert(mail,
+
+            ReservationsDao.insert(
+                        mail,
                         rooms.get(0).getNumber(),
                         Integer.parseInt(hotel_id),
                         start,
-                        end,
-                        false);
-            }
+                        end
+                        );
+
         }
 
         response.redirect(Path.Web.RESERVATIONS_SUCCESS);
