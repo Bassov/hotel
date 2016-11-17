@@ -53,7 +53,7 @@ public class ReservationsDao extends AbstractDao<Reservation> {
     }
 
     public static void setApproved(String id) {
-        String stm = "UPDATE Reservations SET approved = t WHERE id =" + id;
+        String stm = "UPDATE Reservations SET approved = 't' WHERE id =" + id;
         dao.executeUpdate(stm, null);
     }
 

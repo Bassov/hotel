@@ -31,9 +31,10 @@ public class Application {
         post(Path.Web.EMPLOYEES_CREATE,    EmployeeController.create);
 
         //Reservations
-        get (Path.Web.RESERVATIONS_INDEX,  ReservationController.index);
         get (Path.Web.RESERVATIONS_NEW,    ReservationController.newReservation);
         post(Path.Web.RESERVATIONS_CREATE, ReservationController.create);
+        get (Path.Web.RESERVATIONS_APPROVE, ReservationController.approve); // post
+        get (Path.Web.RESERVATIONS_DELETE, ReservationController.delete); // post
 
         //Login
         get (Path.Web.LOGIN,               LoginController.login);

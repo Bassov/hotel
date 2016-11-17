@@ -18,10 +18,11 @@ public class Path {
         @Getter public static final String EMPLOYEES_NEW = "/employees/new/";
         @Getter public static final String EMPLOYEES_CREATE = "/employees/new/";
 
-        @Getter public static final String RESERVATIONS_INDEX = "/reservations/";
         @Getter public static final String RESERVATIONS_NEW = "/";
         @Getter public static final String RESERVATIONS_CREATE = "/reservations/new/";
         @Getter public static final String RESERVATIONS_SHOW = "/reservations/:id/";
+        @Getter public static final String RESERVATIONS_APPROVE = "/reservations/approve/:id/";
+        @Getter public static final String RESERVATIONS_DELETE = "/reservations/delete/:id/";
 
         @Getter public static final String LOGIN = "/login/";
         @Getter public static final String LOGIN_POST = "/login/";

@@ -1,12 +1,8 @@
 package app.rooms;
 
 import app.db.AbstractDao;
-import app.util.SqlUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -25,7 +21,7 @@ public class RoomsDao extends AbstractDao<Room> {
         return dao.executeQuery(statement, null);
     }
 
-    public static List<Room> selectByHotelAndDates(String hotel_id, String start, String end) {
+    public static List<Room> selectByHotelAndDates(String hotel_id, Date start, Date end) {
 
         String statement =
                 "SELECT * FROM Rooms WHERE number " +
@@ -43,20 +39,20 @@ public class RoomsDao extends AbstractDao<Room> {
                 PreparedStatement pst = con.prepareStatement(statement);
                 ){
 
-            pst.setDate(1, SqlUtil.parseDate(start));
-            pst.setDate(4, SqlUtil.parseDate(start));
+            pst.setDate(1, start);
+            pst.setDate(4, start);
 
-            pst.setDate(2, SqlUtil.parseDate(end));
-            pst.setDate(3, SqlUtil.parseDate(end));
+            pst.setDate(2, end);
+            pst.setDate(3, end);
 
-            pst.setDate(5, SqlUtil.parseDate(start));
-            pst.setDate(6, SqlUtil.parseDate(end));
+            pst.setDate(5, start);
+            pst.setDate(6, end);
 
-            pst.setDate(7, SqlUtil.parseDate(start));
-            pst.setDate(8, SqlUtil.parseDate(end));
+            pst.setDate(7, start);
+            pst.setDate(8, end);
 
-            pst.setDate(9, SqlUtil.parseDate(start));
-            pst.setDate(10, SqlUtil.parseDate(end));
+            pst.setDate(9, start);
+            pst.setDate(10, end);
 
 
             ResultSet rst = pst.executeQuery();

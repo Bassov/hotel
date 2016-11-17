@@ -3,7 +3,6 @@ package app.reservations;
 import app.guests.Guest;
 import app.guests.GuestsDao;
 import app.hotels.Hotel;
-import app.login.LoginController;
 import app.rooms.Room;
 import app.rooms.RoomsDao;
 import app.util.Path;
@@ -14,15 +13,17 @@ import spark.Response;
 import spark.Route;
 
 import java.net.URLDecoder;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import static app.login.LoginController.ensureUserIsLoggedIn;
 import static app.util.RequestUtil.queryValue;
 
 public class ReservationController {
 
     public static Route index = (Request request, Response response) -> {
-        LoginController.ensureUserIsLoggedIn(request, response);
+        ensureUserIsLoggedIn(request, response);
         List<Reservation> reservations = ReservationsDao.selectAll();
         HashMap<String, Object> model = new HashMap<>();
         model.put("reservations", reservations);
@@ -47,13 +48,13 @@ public class ReservationController {
         }
 
         String hotel_id = queryValue(request, "hotelId");
-        String start = URLDecoder.decode(queryValue(request, "stDate"), "UTF-8");
-        String end = URLDecoder.decode(queryValue(request, "endDate"), "UTF-8");
+        Date start = SqlUtil.parseDate(queryValue(request, "stDate"));
+        Date end = SqlUtil.parseDate(queryValue(request, "endDate"));
 
         int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
         List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
 
-        if (rooms.isEmpty() || rooms.size() < number_of_rooms) {
+        if (rooms.isEmpty() || rooms.size() < number_of_rooms || number_of_rooms <= 0) {
 //            response.redirect(Path.Web.RESERVATIONS_ERROR);
             return null;
         }
@@ -65,18 +66,18 @@ public class ReservationController {
                 ReservationsDao.insert(mail,
                         rooms.get(0).getNumber(),
                         Integer.parseInt(hotel_id),
-                        SqlUtil.parseDate(start),
-                        SqlUtil.parseDate(end),
+                        start,
+                        end,
                         false);
             }
         }
 
-        response.redirect(Path.Web.RESERVATIONS_INDEX);
+        response.redirect(Path.Web.RESERVATIONS_CREATE);
         return null;
     };
 
     public static Route show = (Request request, Response response) -> {
-        LoginController.ensureUserIsLoggedIn(request, response);
+        ensureUserIsLoggedIn(request, response);
         String reservation_id = request.params(":id");
         Reservation reservation = ReservationsDao.find(reservation_id);
 
@@ -84,6 +85,22 @@ public class ReservationController {
         model.put("reservation", reservation);
 
         return ViewUtil.render(request, model, Path.Template.RESERVATION_SHOW);
+    };
+
+    public static Route approve = (Request request, Response response) -> {
+        ensureUserIsLoggedIn(request, response);
+        String reservation_id = request.params(":id");
+        ReservationsDao.setApproved(reservation_id);
+        response.redirect(Path.Web.DASHBOARD);
+        return null;
+    };
+
+    public static Route delete = (Request request, Response response) -> {
+        ensureUserIsLoggedIn(request, response);
+        String reservation_id = request.params(":id");
+        ReservationsDao.deleteById(reservation_id);
+        response.redirect(Path.Web.DASHBOARD);
+        return null;
     };
 
 }
