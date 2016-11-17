@@ -37,13 +37,18 @@ public class ReservationsDao extends AbstractDao<Reservation> {
         return dao.executeQuery(statement, null);
     }
 
+    public static List<Reservation> selectByHotelId(String id) {
+        String statement = "SELECT * FROM reservations WHERE hotel_id = "+id;
+        return dao.executeQuery(statement, null);
+    }
+
     public static List<Reservation> selectUnapproved() {
-        String statement = "SELECT * FROM reservations WHERE approved = false";
+        String statement = "SELECT * FROM reservations WHERE approved = f";
         return dao.executeQuery(statement, null);
     }
 
     public static List<Reservation> selectApproved() {
-        String statement = "SELECT * FROM reservations WHERE approved = true";
+        String statement = "SELECT * FROM reservations WHERE approved = t";
         return dao.executeQuery(statement, null);
     }
 
