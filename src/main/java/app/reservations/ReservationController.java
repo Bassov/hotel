@@ -22,14 +22,6 @@ import static app.util.RequestUtil.queryValue;
 
 public class ReservationController {
 
-    public static Route index = (Request request, Response response) -> {
-        ensureUserIsLoggedIn(request, response);
-        List<Reservation> reservations = ReservationsDao.selectAll();
-        HashMap<String, Object> model = new HashMap<>();
-        model.put("reservations", reservations);
-        return ViewUtil.render(request, model, Path.Template.RESERVATION_INDEX);
-    };
-
     public static Route newReservation = (Request request, Response response) -> {
         HashMap<String,Object> model = new HashMap<>();
         model.put("hotels", Hotel.all());
@@ -55,7 +47,7 @@ public class ReservationController {
         List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
 
         if (rooms.isEmpty() || rooms.size() < number_of_rooms || number_of_rooms <= 0) {
-//            response.redirect(Path.Web.RESERVATIONS_ERROR);
+            response.redirect(Path.Web.RESERVATIONS_ERROR);
             return null;
         }
 
@@ -72,7 +64,7 @@ public class ReservationController {
             }
         }
 
-        response.redirect(Path.Web.RESERVATIONS_CREATE);
+        response.redirect(Path.Web.RESERVATIONS_SUCCESS);
         return null;
     };
 
@@ -101,6 +93,14 @@ public class ReservationController {
         ReservationsDao.deleteById(reservation_id);
         response.redirect(Path.Web.DASHBOARD);
         return null;
+    };
+
+    public static Route success = (Request request, Response response) -> {
+        return ViewUtil.render(request, new HashMap<>(), Path.Template.RESERVATION_SUCCESS);
+    };
+
+    public static Route error = (Request request, Response response) -> {
+        return ViewUtil.render(request, new HashMap<>(), Path.Template.RESERVATION_ERROR);
     };
 
 }

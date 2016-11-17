@@ -41,12 +41,12 @@
                 <td>$reservation.getEnd_date()</td>
                 <td>
                     <a href="/reservations/approve/$reservation.getId()">
-                        <img src="/reservations/Ok.png" width="28" height="28">
+                        <img src="/reservations/Ok.png" width="18" height="18">
                     </a>
                 </td>
                 <td>
                     <a href="/reservations/delete/$reservation.getId()">
-                        <img src="/reservations/Cancel.png" width="28" height="28">
+                        <img src="/reservations/Cancel.png" width="18" height="18">
                     </a>
                 </td>
             </tr>
@@ -81,7 +81,7 @@
                 <td>$reservation.getEnd_date()</td>
                 <td>
                     <a href="/reservations/delete/$reservation.getId()">
-                        <img src="/reservations/Cancel.png" width="28" height="28">
+                        <img src="/reservations/Cancel.png" width="18" height="18">
                     </a>
                 </td>
             </tr>

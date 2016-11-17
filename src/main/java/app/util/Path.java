@@ -14,12 +14,12 @@ public class Path {
         @Getter public static final String HOTELS_SHOW = "/hotels/:id/";
         @Getter public static final String HOTELS_EMPLOYEES = "/hotels/:id/employees/";
 
-        @Getter public static final String EMPLOYEES_INDEX = "/employees/";
         @Getter public static final String EMPLOYEES_NEW = "/employees/new/";
         @Getter public static final String EMPLOYEES_CREATE = "/employees/new/";
 
         @Getter public static final String RESERVATIONS_NEW = "/";
-        @Getter public static final String RESERVATIONS_CREATE = "/reservations/new/";
+        @Getter public static final String RESERVATIONS_SUCCESS = "/success/";
+        @Getter public static final String RESERVATIONS_ERROR = "/error/";
         @Getter public static final String RESERVATIONS_SHOW = "/reservations/:id/";
         @Getter public static final String RESERVATIONS_APPROVE = "/reservations/approve/:id/";
         @Getter public static final String RESERVATIONS_DELETE = "/reservations/delete/:id/";
@@ -41,7 +41,8 @@ public class Path {
         public static final String NOT_FOUND = "templates/notFound.vm";
 
         public static final String RESERVATION_NEW = "templates/reservations/new.vm";
-        public static final String RESERVATION_INDEX = "templates/reservations/index.vm";
+        public static final String RESERVATION_SUCCESS = "templates/reservations/success.vm";
+        public static final String RESERVATION_ERROR = "templates/reservations/error.vm";
         public static final String RESERVATION_SHOW = "templates/reservations/show.vm";
 
         public static final String LOGIN = "templates/login/login.vm";

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Book room in 2G1H</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/lib/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="/reservations/error.css" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<div id="center" class="semi">
+    <div class="col-md-10 offset-md-1">
+        <h3 style="padding: 18px; padding-top: 30px;">Sorry!</h3>
+        <p>Something went wrong</p>
+        <p>We dont have that much rooms available</p>
+        <p>Or you entered wrong info into form</p>
+    </div>
+</div>
+</body>
+</html>

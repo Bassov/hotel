@@ -1,0 +1,22 @@
+/*
+ * Base structure
+ */
+
+body {
+    background-image: url("cover.jpg");
+}
+
+#center {
+    top: 33%;
+    left: 30%;
+    width:30em;
+    height:15em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+    /*border: 1px solid #ccc;*/
+    border-radius: 25px;
+    background-color: rgba(221, 0, 23, 0.33);
+    position: fixed;
+    color: black;
+}
+

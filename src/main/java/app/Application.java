@@ -32,8 +32,10 @@ public class Application {
 
         //Reservations
         get (Path.Web.RESERVATIONS_NEW,    ReservationController.newReservation);
-        post(Path.Web.RESERVATIONS_CREATE, ReservationController.create);
-        get (Path.Web.RESERVATIONS_APPROVE, ReservationController.approve); // post
+        post(Path.Web.RESERVATIONS_NEW,    ReservationController.create);
+        get (Path.Web.RESERVATIONS_SUCCESS,ReservationController.success);
+        get (Path.Web.RESERVATIONS_ERROR,  ReservationController.error);
+        get (Path.Web.RESERVATIONS_APPROVE,ReservationController.approve); // post
         get (Path.Web.RESERVATIONS_DELETE, ReservationController.delete); // post
 
         //Login

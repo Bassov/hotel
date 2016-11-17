@@ -34,7 +34,7 @@
     <div id="center" class="semi">
         <div class="col-md-10 offset-md-1">
             <h3 style="padding: 18px; padding-top: 30px;">Book today</h3>
-            <form method="post" action="$WebPath.getRESERVATIONS_CREATE()">
+            <form method="post">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
