@@ -27,8 +27,11 @@ public class RoomsDao extends AbstractDao<Room> {
                         "NOT IN " +
                         "(SELECT Reservations.room_number FROM Reservations " +
                         "WHERE hotel_id = '" +hotel_id+"' " +
-                        "and ((end_date > ? and end_date < ? " +
-                        "or (st_date < ? and st_date > ?))))";
+                        "and ((end_date > ? and end_date < ?) " +
+                        "or (st_date < ? and st_date > ?)" +
+                        "or (st_date < ? and end_date > ?)" +
+                        "or st_date = ? or st_date = ?" +
+                        "or end_date = ? or end_date = ?))";
 
         try (
                 Connection con = createConnection();
@@ -40,6 +43,16 @@ public class RoomsDao extends AbstractDao<Room> {
 
             pst.setDate(2, SqlUtil.parseDate(end));
             pst.setDate(3, SqlUtil.parseDate(end));
+
+            pst.setDate(5, SqlUtil.parseDate(start));
+            pst.setDate(6, SqlUtil.parseDate(end));
+
+            pst.setDate(7, SqlUtil.parseDate(start));
+            pst.setDate(8, SqlUtil.parseDate(end));
+
+            pst.setDate(9, SqlUtil.parseDate(start));
+            pst.setDate(10, SqlUtil.parseDate(end));
+
 
             ResultSet rst = pst.executeQuery();
             return dao.mapToObject().apply(rst);
