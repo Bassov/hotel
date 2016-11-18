@@ -35,6 +35,7 @@ public class EmployeeController {
 
     public static final Route newEmployee = (Request request, Response response) -> {
         LoginController.ensureUserIsLoggedIn(request, response);
+        LoginController.allowManagers(request, response);
         HashMap<String,Object> model = new HashMap<>();
         model.put("hotels", Hotel.all());
         return ViewUtil.render(request, model, Path.Template.EMPLOYEES_NEW);
