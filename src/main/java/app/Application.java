@@ -37,6 +37,7 @@ public class Application {
         get (Path.Web.RESERVATIONS_ERROR,  ReservationController.error);
         get (Path.Web.RESERVATIONS_APPROVE,ReservationController.approve); // post
         get (Path.Web.RESERVATIONS_DELETE, ReservationController.delete); // post
+        get(Path.Web.RESERVATIONS_SHOW, ReservationController.show);
 
         //Login
         get (Path.Web.LOGIN,               LoginController.login);

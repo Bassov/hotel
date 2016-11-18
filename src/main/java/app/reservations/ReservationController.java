@@ -72,9 +72,10 @@ public class ReservationController {
         ensureUserIsLoggedIn(request, response);
         String reservation_id = request.params(":id");
         Reservation reservation = ReservationsDao.find(reservation_id);
-
+        Guest guest = GuestsDao.find(reservation.getGuest_mail());
         HashMap<String, Object> model = new HashMap<>();
         model.put("reservation", reservation);
+        model.put("guest", guest);
 
         return ViewUtil.render(request, model, Path.Template.RESERVATION_SHOW);
     };
