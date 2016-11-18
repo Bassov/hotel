@@ -19,19 +19,19 @@
                     <a class="nav-link" href="$WebPath.getHOTELS_INDEX()">Hotels list
                     </a>
                 </li>
-                #if ($currentUser.isManager())
-                <li class="nav-item active">
-                    <a class="nav-link" href="$WebPath.getHOTELS_NEW()">Create new hotel</a>
-                </li>
-                #end
                 <li class="nav-item active">
                     <a class="nav-link" href="/hotels/$currentUser.getHotelId()/employees/">
                         List employees
                     </a>
                 </li>
+                #if ($currentUser.isManager())
+                <li class="nav-item active">
+                    <a class="nav-link" href="$WebPath.getHOTELS_NEW()">Create new hotel</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="$WebPath.getEMPLOYEES_NEW()">Add employee</a>
                 </li>
+                #end
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">

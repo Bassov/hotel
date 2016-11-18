@@ -2,12 +2,7 @@ INSERT INTO hotels (city, address) VALUES ('Innopolis', 'Universitetskaya 2/1');
 INSERT INTO hotels (city, address) VALUES ('Annapa', 'Universitetskaya 2/2');
 INSERT INTO hotels (city, address) VALUES ('Boston', 'Universitetskaya 2/3');
 INSERT INTO hotels (city, address) VALUES ('Cabimas', 'Universitetskaya 2/3');
-
-INSERT INTO rooms (hotel_id, number) VALUES (1, 101);
-INSERT INTO rooms (hotel_id, number) VALUES (1, 102);
-INSERT INTO rooms (hotel_id, number) VALUES (1, 103);
-INSERT INTO rooms (hotel_id, number) VALUES (1, 104);
-INSERT INTO rooms (hotel_id, number) VALUES (1, 105);
+INSERT INTO hotels (city, address) VALUES ('Moscow', 'Universitetskaya 2/3');
 
 INSERT INTO employees (name, lastName) VALUES ('Admin', 'Admin');
 INSERT INTO users (emp_id, login, password) VALUES (1, 'admin', 'password');

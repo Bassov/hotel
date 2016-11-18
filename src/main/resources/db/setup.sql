@@ -61,3 +61,28 @@ CREATE TABLE Reservations (
   approved BOOLEAN DEFAULT FALSE ,
   FOREIGN KEY (hotel_id, room_number) REFERENCES Rooms ON DELETE CASCADE
 );
+
+CREATE OR REPLACE FUNCTION create_rooms() RETURNS TRIGGER AS $$
+DECLARE
+  i INTEGER;
+  stDate DATE;
+  endDate DATE;
+BEGIN
+  --
+  -- Perform the required operation on hotels to create rooms
+  --
+  << outer_loop >>
+  FOR i IN 1..1000 LOOP
+    INSERT INTO rooms (hotel_id, number) VALUES (NEW.id, i);
+  END loop outer_loop;
+
+  FOR i IN 1..200000 LOOP
+    INSERT INTO Employees (name, lastName) VALUES (CONCAT('Mansur'), 'Khazeev');
+  END LOOP;
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER create_rooms_for_hotel
+AFTER INSERT ON hotels
+FOR EACH ROW EXECUTE PROCEDURE create_rooms();

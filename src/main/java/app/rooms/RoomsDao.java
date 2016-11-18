@@ -62,11 +62,6 @@ public class RoomsDao extends AbstractDao<Room> {
         return null;
     }
 
-    public static List<Room> selectAll() {
-        String statement = "SELECT * FROM Rooms";
-        return dao.executeQuery(statement, null);
-    }
-
     public static Room find(String hotel_id, String number) {
         String statement = "SELECT * FROM Rooms WHERE hotel_id = " + hotel_id + " and number = " + number;
         return dao.findByKey(statement, null);

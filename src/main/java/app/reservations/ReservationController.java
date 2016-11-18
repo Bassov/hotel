@@ -29,42 +29,45 @@ public class ReservationController {
     };
 
     public static final Route create = (Request request, Response response) -> {
-        String mail = URLDecoder.decode(queryValue(request, "email"),  "UTF-8");
-        String name = queryValue(request, "name");
-        String lastName = queryValue(request, "lastName");
+        try {
+            String mail = URLDecoder.decode(queryValue(request, "email"), "UTF-8");
+            String name = queryValue(request, "name");
+            String lastName = queryValue(request, "lastName");
+            String hotel_id = queryValue(request, "hotelId");
+            Date start = SqlUtil.parseDate(queryValue(request, "stDate"));
+            Date end = SqlUtil.parseDate(queryValue(request, "endDate"));
+            int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
 
-        Guest guest = GuestsDao.find(mail);
+            Guest guest = GuestsDao.find(mail);
 
-        if (guest == null) {
-            GuestsDao.insert(mail, name, lastName);
-        }
+            if (guest == null) {
+                GuestsDao.insert(mail, name, lastName);
+            }
 
-        String hotel_id = queryValue(request, "hotelId");
-        Date start = SqlUtil.parseDate(queryValue(request, "stDate"));
-        Date end = SqlUtil.parseDate(queryValue(request, "endDate"));
+            List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
 
-        int number_of_rooms = Integer.parseInt(queryValue(request, "number"));
-        List<Room> rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
+            if (rooms.isEmpty() || rooms.size() < number_of_rooms || number_of_rooms <= 0) {
+                response.redirect(Path.Web.RESERVATIONS_ERROR);
+                return null;
+            }
 
-        if (rooms.isEmpty() || rooms.size() < number_of_rooms || number_of_rooms <= 0) {
-            response.redirect(Path.Web.RESERVATIONS_ERROR);
-            return null;
-        }
+            for (int i = 0; i < number_of_rooms; i++) {
+                rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
 
-        for (int i = 0; i < number_of_rooms; i++) {
-            rooms = RoomsDao.selectByHotelAndDates(hotel_id, start, end);
-
-            ReservationsDao.insert(
+                ReservationsDao.insert(
                         mail,
                         rooms.get(0).getNumber(),
                         Integer.parseInt(hotel_id),
                         start,
                         end
-                        );
+                );
 
+            }
+
+            response.redirect(Path.Web.RESERVATIONS_SUCCESS);
+        } catch (Exception e) {
+            response.redirect(Path.Web.RESERVATIONS_ERROR);
         }
-
-        response.redirect(Path.Web.RESERVATIONS_SUCCESS);
         return null;
     };
 
